@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import img1 from "@/assets/project-1.jpg";
@@ -57,6 +57,13 @@ export function ServicesSection() {
   const [active, setActive] = useState(0);
   const current = services[active];
 
+  useEffect(() => {
+    services.forEach((s) => {
+      const img = new Image();
+      img.src = s.image;
+    });
+  }, []);
+
   return (
     <section id="services" className="relative bg-emerald-deep py-28 md:py-36">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
@@ -77,7 +84,7 @@ export function ServicesSection() {
           <div className="relative order-2 md:order-1">
             <div className="sticky top-28 overflow-hidden bg-emerald-mid">
               <div className="relative aspect-[4/5] w-full">
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                   <motion.img
                     key={current.image}
                     src={current.image}
@@ -85,7 +92,7 @@ export function ServicesSection() {
                     initial={{ opacity: 0, scale: 1.06 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </AnimatePresence>
