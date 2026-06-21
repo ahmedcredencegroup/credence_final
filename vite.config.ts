@@ -7,6 +7,11 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Force nitro on for self-hosted deploys (e.g. Netlify via GitHub) — by
+  // default it only runs inside Lovable's own sandbox. With this enabled,
+  // nitro auto-detects the Netlify build environment and uses its `netlify`
+  // preset, generating the Netlify Functions needed for SSR routing.
+  nitro: true,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
