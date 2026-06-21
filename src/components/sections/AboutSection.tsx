@@ -10,9 +10,9 @@ const stats = [
 ];
 
 const principals = [
-  { name: "Ananya Bhalla", role: "Founder, Principal Designer", bio: "Trained at RISD; previously with Studio KO. Leads concept and material direction across all commissions." },
-  { name: "Rohan Mathur", role: "Partner, Hospitality", bio: "Fifteen years with international hotel groups. Heads the hospitality and F&B portfolio out of Mumbai." },
-  { name: "Iris Aleman", role: "Partner, Procurement", bio: "Curates the studio's furniture and art index. Vintage scout across Milan, Paris and Jaipur." },
+  { name: "Ahmed Bashoeb", role: "Founder, Managing Director", bio: "Trained at RISD; previously with Studio KO. Leads concept and material direction across all commissions." },
+  { name: "Aarish", role: "Founder ", bio: "Fifteen years with international hotel groups. Heads the hospitality and F&B portfolio out of Mumbai." },
+  { name: "John Doe", role: "Partner, Procurement", bio: "Curates the studio's furniture and art index. Vintage scout across Milan, Paris and Jaipur." },
 ];
 
 const values = [
