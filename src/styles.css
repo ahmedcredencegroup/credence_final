@@ -1,0 +1,138 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-emerald-deep: var(--emerald-deep);
+  --color-emerald-mid: var(--emerald-mid);
+  --color-emerald-light: var(--emerald-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-ivory: var(--ivory);
+  --color-charcoal: var(--charcoal);
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Inter Tight", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Brand palette */
+  --emerald-deep: #0B2C25;
+  --emerald-mid: #143F35;
+  --emerald-light: #2E5C4E;
+  --gold: #D6B784;
+  --gold-light: #E8D4AC;
+  --gold-dark: #B3914F;
+  --ivory: #F5EFE5;
+  --charcoal: #1A1A1A;
+
+  --gradient-primary: linear-gradient(135deg, #0B2C25 0%, #143F35 45%, #B3914F 85%, #D6B784 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(11,44,37,0.55) 0%, rgba(11,44,37,0.25) 35%, rgba(11,44,37,0.95) 100%);
+  --shadow-elegant: 0 30px 80px -30px rgba(0,0,0,0.7), 0 1px 0 rgba(214,183,132,0.08) inset;
+
+  /* shadcn semantic, mapped to brand for dark editorial theme */
+  --background: var(--emerald-deep);
+  --foreground: var(--ivory);
+  --card: var(--emerald-mid);
+  --card-foreground: var(--ivory);
+  --popover: var(--emerald-mid);
+  --popover-foreground: var(--ivory);
+  --primary: var(--gold);
+  --primary-foreground: var(--emerald-deep);
+  --secondary: var(--emerald-light);
+  --secondary-foreground: var(--ivory);
+  --muted: var(--emerald-mid);
+  --muted-foreground: #B9C7C0;
+  --accent: var(--gold);
+  --accent-foreground: var(--emerald-deep);
+  --destructive: #B3543F;
+  --destructive-foreground: var(--ivory);
+  --border: rgba(214,183,132,0.18);
+  --input: rgba(214,183,132,0.25);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--emerald-deep);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+}
+
+@utility gold-gradient-text {
+  background: linear-gradient(120deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
