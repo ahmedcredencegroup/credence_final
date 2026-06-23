@@ -13,17 +13,17 @@ import heroImg from "@/assets/hero-interior.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Credence Groups — Interior Design Studio" },
+      { title: "Credence Group · Interior Design & Turnkey | Hyderabad" },
       {
         name: "description",
         content:
-          "Credence Groups is an interior design practice composing residential, hospitality and commercial spaces with restraint and credence. Studios in Delhi and Mumbai.",
+          "Credence Group is a Hyderabad-based practice in interior design, turnkey delivery and infrastructure development. Building trust, creating value, designed and delivered in-house.",
       },
-      { property: "og:title", content: "Credence Groups — Interior Design Studio" },
+      { property: "og:title", content: "Credence Group · Interior Design & Turnkey | Hyderabad" },
       {
         property: "og:description",
         content:
-          "Editorial interior design across residences, hotels, restaurants and boutiques. Drawn, sourced and supervised in-house.",
+          "Luxury interior design, premium turnkey projects and infrastructure development across Hyderabad. Concept to handover, under one roof.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroImg },

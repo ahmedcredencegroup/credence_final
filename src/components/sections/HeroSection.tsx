@@ -3,7 +3,14 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero-interior.jpg";
 import { Emblem } from "@/components/brand/Emblem";
 
-const headline = ["Interiors", "composed", "with", "credence."];
+const headline: { word: string; gold?: boolean }[] = [
+  { word: "Designing" },
+  { word: "with" },
+  { word: "purpose.", gold: true },
+  { word: "Building" },
+  { word: "with" },
+  { word: "precision.", gold: true },
+];
 
 export function HeroSection() {
   return (
@@ -34,19 +41,19 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="eyebrow mb-6"
         >
-          Credence Groups — Est. Studio of Interiors
+          Credence Group · Interior Design &amp; Turnkey · Hyderabad
         </motion.p>
 
         <h1 className="font-display text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.98] text-ivory">
-          {headline.map((word, i) => (
+          {headline.map((item, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.25em] inline-block ${i === 3 ? "italic gold-gradient-text" : ""}`}
+              transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={`mr-[0.25em] inline-block ${item.gold ? "italic gold-gradient-text" : ""}`}
             >
-              {word}
+              {item.word}
             </motion.span>
           ))}
         </h1>
@@ -57,7 +64,7 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 1.2 }}
           className="mt-8 max-w-xl text-base leading-relaxed text-ivory/75 md:text-lg"
         >
-          A design practice for the quietly considered — residential, hospitality and commercial interiors composed across India, since 2012.
+          A Hyderabad-based practice in interior design, turnkey delivery and infrastructure, building trust and creating value, one considered space at a time.
         </motion.p>
 
         <motion.div

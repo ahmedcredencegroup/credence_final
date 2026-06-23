@@ -1,25 +1,24 @@
 import { motion } from "motion/react";
 import aboutImg from "@/assets/about-studio.jpg";
-import { Emblem } from "@/components/brand/Emblem";
 
 const stats = [
-  { n: "12", label: "Years in practice" },
-  { n: "84", label: "Projects delivered" },
-  { n: "9", label: "Cities worldwide" },
-  { n: "17", label: "Awards & features" },
+  { n: "03", label: "Verticals" },
+  { n: "04", label: "Signature projects" },
+  { n: "27,500+", label: "Sq. ft delivered" },
+  { n: "100%", label: "In-house execution" },
 ];
 
 const principals = [
-  { name: "Ahmed Bashoeb", role: "Founder, Managing Director", bio: "Trained at RISD; previously with Studio KO. Leads concept and material direction across all commissions." },
-  { name: "Aarish", role: "Founder ", bio: "Fifteen years with international hotel groups. Heads the hospitality and F&B portfolio out of Mumbai." },
-  { name: "John Doe", role: "Partner, Procurement", bio: "Curates the studio's furniture and art index. Vintage scout across Milan, Paris and Jaipur." },
+  { name: "Ahmed Bashoeb", role: "Managing Director", email: "ahmed@credencegroup.co", phone: "+91 90000 63200" },
+  { name: "Aarish Baig", role: "Managing Director", email: "aarishbaig@credencegroup.co", phone: "+91 79899 05052" },
+  { name: "Syed Abdul Kareem", role: "Managing Director", email: "kareem@credencegroup.co", phone: "+91 00000 00000" },
 ];
 
 const values = [
-  { title: "Restraint", body: "Editing is design." },
-  { title: "Material", body: "Honest to the hand." },
-  { title: "Permanence", body: "Made to age, not date." },
-  { title: "Credence", body: "Earn it, every project." },
+  { title: "Client-Centric", body: "Spaces that reflect your vision and lifestyle." },
+  { title: "Uncompromising Quality", body: "The highest standards of craft and detail." },
+  { title: "Flawless Execution", body: "Precision and efficiency, concept to completion." },
+  { title: "Single Point of Contact", body: "One dedicated lead, from sketch to handover." },
 ];
 
 export function AboutSection() {
@@ -29,7 +28,7 @@ export function AboutSection() {
       <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <img
           src={aboutImg}
-          alt="Credence Groups design studio with material samples on a drafting table"
+          alt="Credence Group interior design studio with material samples on a drafting table"
           width={1920}
           height={1100}
           loading="lazy"
@@ -54,7 +53,7 @@ export function AboutSection() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-ivory"
             >
-              The studio behind <span className="italic gold-gradient-text">Credence</span>.
+              The team behind <span className="italic gold-gradient-text">Credence</span>.
             </motion.h2>
           </div>
         </div>
@@ -71,13 +70,13 @@ export function AboutSection() {
             className="space-y-6 text-base leading-8 text-ivory/75"
           >
             <p>
-              Credence Groups was founded in 2012 in a single room above a fabric merchant in Delhi's Khan Market. Twelve years on, we operate out of two studios — Delhi and Mumbai — and a small workshop in Jaipur where bespoke pieces are commissioned.
+              Credence Group is an interior design, turnkey and infrastructure practice based in Hyderabad. We set out to redefine the standards of design and construction, creating spaces that seamlessly blend functionality, innovation and timeless elegance.
             </p>
             <p>
-              We are not a large practice and do not intend to be. We take on a small number of commissions each year so that every project can be drawn, sourced and supervised by the principal who pitched it. That is, in the end, the only thing we sell.
+              We believe a home should be more than a place. It should inspire, bring comfort and quietly enrich your life every day. Good design is not how an interior looks, but how it supports the way you live.
             </p>
             <p>
-              Our work has been published in <span className="italic text-gold">AD India</span>, <span className="italic text-gold">Wallpaper*</span> and <span className="italic text-gold">Elle Decor</span>, and recognised by the IIID Design Excellence Awards across four cycles.
+              From a single dedicated project lead to a team that carries each home from first sketch to final handover, design and delivery are never handed off. <span className="italic text-gold">Building trust, creating value</span> on every project.
             </p>
           </motion.div>
 
@@ -102,8 +101,8 @@ export function AboutSection() {
 
         {/* Principals */}
         <div className="mt-28">
-          <p className="eyebrow mb-5">The Principals</p>
-          <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three partners. One signature.</h3>
+          <p className="eyebrow mb-5">Leadership</p>
+          <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three managing directors. One standard.</h3>
 
           <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {principals.map((p, i) => (
@@ -115,10 +114,13 @@ export function AboutSection() {
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 className="border-t border-gold/20 pt-6"
               >
-                <p className="font-display text-7xl text-gold/30">0{i + 1}</p>
-                <h4 className="mt-2 font-display text-2xl text-ivory">{p.name}</h4>
+                <span className="block h-2 w-2 rotate-45 bg-gold/80" />
+                <h4 className="mt-6 font-display text-2xl text-ivory">{p.name}</h4>
                 <p className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-gold/80">{p.role}</p>
-                <p className="mt-5 text-sm leading-7 text-ivory/65">{p.bio}</p>
+                <div className="mt-5 space-y-1.5 text-sm leading-7 text-ivory/65">
+                  <a href={`mailto:${p.email}`} className="block break-all transition-colors hover:text-gold">{p.email}</a>
+                  <a href={`tel:${p.phone.replace(/\s+/g, "")}`} className="block transition-colors hover:text-gold">{p.phone}</a>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -134,9 +136,9 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="flex items-start gap-4"
+                className="flex items-start gap-3"
               >
-                <Emblem className="h-7 w-7 shrink-0 opacity-80" />
+                <span className="mt-2 h-2 w-2 shrink-0 rotate-45 bg-gold/80" />
                 <div>
                   <h4 className="font-display text-xl text-gold">{v.title}</h4>
                   <p className="mt-1 text-sm text-ivory/60">{v.body}</p>

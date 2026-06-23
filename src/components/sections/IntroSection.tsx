@@ -11,7 +11,7 @@ export function IntroSection() {
           transition={{ duration: 0.8 }}
           className="eyebrow"
         >
-          The Studio<br />Est. 2012
+          Our Story<br />Est. Hyderabad
         </motion.p>
 
         <motion.div
@@ -21,13 +21,12 @@ export function IntroSection() {
           transition={{ duration: 0.9, delay: 0.1 }}
         >
           <p className="font-display text-[clamp(1.75rem,3vw,2.75rem)] leading-[1.2] text-ivory">
-            We design interiors that do not announce themselves — they
-            <span className="italic gold-gradient-text"> hold a room together </span>
-            so completely that the work becomes invisible, and the life inside it visible.
+            Our vision is to redefine the standards of design and construction, creating spaces that
+            <span className="italic gold-gradient-text"> seamlessly blend functionality, innovation and timeless elegance.</span>
           </p>
           <div className="mt-12 hairline w-32" />
           <p className="mt-8 max-w-xl text-sm leading-7 text-ivory/65">
-            Credence Groups is a multidisciplinary interior design practice working across residences, restaurants, hotels and boutiques. Every commission is treated as a single, complete composition — drawn, sourced and staged in-house.
+            With extensive expertise in interior design, construction and turnkey execution, Credence Group delivers innovative, high-quality spaces through a commitment to craftsmanship, precision and client satisfaction, building lasting relationships that turn every client's vision into a space they are proud to call their own.
           </p>
         </motion.div>
       </div>

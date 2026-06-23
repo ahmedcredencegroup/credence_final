@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesVerticalRouteImport } from './routes/services.$vertical'
+import { Route as ProjectsProjectRouteImport } from './routes/projects.$project'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesVerticalRoute = ServicesVerticalRouteImport.update({
+  id: '/services/$vertical',
+  path: '/services/$vertical',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsProjectRoute = ProjectsProjectRouteImport.update({
+  id: '/projects/$project',
+  path: '/projects/$project',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects/$project': typeof ProjectsProjectRoute
+  '/services/$vertical': typeof ServicesVerticalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects/$project': typeof ProjectsProjectRoute
+  '/services/$vertical': typeof ServicesVerticalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projects/$project': typeof ProjectsProjectRoute
+  '/services/$vertical': typeof ServicesVerticalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/projects/$project' | '/services/$vertical'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/projects/$project' | '/services/$vertical'
+  id: '__root__' | '/' | '/projects/$project' | '/services/$vertical'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsProjectRoute: typeof ProjectsProjectRoute
+  ServicesVerticalRoute: typeof ServicesVerticalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/$vertical': {
+      id: '/services/$vertical'
+      path: '/services/$vertical'
+      fullPath: '/services/$vertical'
+      preLoaderRoute: typeof ServicesVerticalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$project': {
+      id: '/projects/$project'
+      path: '/projects/$project'
+      fullPath: '/projects/$project'
+      preLoaderRoute: typeof ProjectsProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsProjectRoute: ProjectsProjectRoute,
+  ServicesVerticalRoute: ServicesVerticalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

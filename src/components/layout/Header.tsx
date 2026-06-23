@@ -17,7 +17,15 @@ export function Header() {
   const active = useActiveSection(["home", "projects", "services", "about", "philosophy", "contact"]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 80);
+        ticking = false;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -27,12 +35,12 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-emerald-deep/92 backdrop-blur-md border-b border-gold/15"
+          ? "bg-emerald-deep/95 border-b border-gold/15"
           : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">
-        <a href="#home" className="flex items-center gap-3" aria-label="Credence Groups — home">
+        <a href="#home" className="flex items-center gap-3" aria-label="Credence Group — home">
           <Emblem className="h-9 w-9 md:hidden" />
           <Wordmark className="hidden h-7 w-auto md:block" />
         </a>

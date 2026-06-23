@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Mail, MapPin, Phone, Instagram } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone, Globe } from "lucide-react";
 import { toast } from "sonner";
 
-const projectTypes = ["Residential", "Hospitality", "Commercial", "Retail", "Other"];
+const projectTypes = ["Interior Design", "Turnkey Project", "Infrastructure", "Furniture / Modular", "Other"];
 const budgets = ["Under ₹25L", "₹25L – ₹1Cr", "₹1Cr – ₹5Cr", "₹5Cr+", "Prefer not to say"];
 
 export function ContactSection() {
@@ -25,7 +25,7 @@ export function ContactSection() {
       toast.error("Please fill in your name, email and a short message.");
       return;
     }
-    toast.success("Thank you — we'll be in touch within 48 hours.");
+    toast.success("Thank you, we'll be in touch within 48 hours.");
     setForm({ name: "", email: "", phone: "", type: "", budget: "", message: "" });
   }
 
@@ -48,10 +48,10 @@ export function ContactSection() {
           </p>
 
           <div className="mt-12 space-y-6">
-            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value="studio@credencegroups.com" />
-            <DetailRow icon={<Phone className="h-4 w-4" />} label="Telephone" value="+91 11 4000 8800" />
-            <DetailRow icon={<MapPin className="h-4 w-4" />} label="Studio" value={`14, Whitfield House\nConnaught Place, New Delhi 110001`} />
-            <DetailRow icon={<Instagram className="h-4 w-4" />} label="Follow" value="@credence.groups" />
+            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value="ahmed@credencegroup.co" />
+            <DetailRow icon={<Phone className="h-4 w-4" />} label="Telephone" value="+91 90000 63200" />
+            <DetailRow icon={<MapPin className="h-4 w-4" />} label="Studio" value={`Meenakshi Tech Park, Tower B, 8th Floor\nHyderabad 500032`} />
+            <DetailRow icon={<Globe className="h-4 w-4" />} label="Web" value="credencegroup.co" />
           </div>
         </motion.div>
 

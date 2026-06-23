@@ -6,7 +6,7 @@ export function useActiveSection(ids: string[], offset = 120) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handler = () => {
+    const compute = () => {
       const scrollY = window.scrollY + offset;
       let current = ids[0] ?? "";
       for (const id of ids) {
@@ -17,7 +17,17 @@ export function useActiveSection(ids: string[], offset = 120) {
       setActive(current);
     };
 
-    handler();
+    let ticking = false;
+    const handler = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        compute();
+        ticking = false;
+      });
+    };
+
+    compute();
     window.addEventListener("scroll", handler, { passive: true });
     window.addEventListener("resize", handler);
     return () => {

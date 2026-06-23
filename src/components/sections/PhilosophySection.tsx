@@ -19,14 +19,14 @@ export function PhilosophySection() {
           “
         </motion.span>
         <motion.blockquote
-          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-2 font-display text-[clamp(1.75rem,4vw,3.5rem)] italic leading-[1.2] text-ivory"
         >
-          A room is not designed when nothing more can be added —{" "}
-          <span className="gold-gradient-text">it is designed when nothing more can be taken away.</span>
+          A well-made interior should feel inevitable,{" "}
+          <span className="gold-gradient-text">never loud, never ornamental for its own sake.</span>
         </motion.blockquote>
         <motion.p
           initial={{ opacity: 0 }}
@@ -35,7 +35,7 @@ export function PhilosophySection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="eyebrow mt-10"
         >
-          — Credence Groups, Studio Manifesto
+          Credence Group · Building trust, creating value
         </motion.p>
       </div>
     </section>
