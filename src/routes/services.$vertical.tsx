@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -7,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
 import { getVertical, verticals } from "@/lib/verticals";
 import { projectsByVertical } from "@/lib/projects";
+import { useScrollTop } from "@/hooks/use-scroll-top";
 
 export const Route = createFileRoute("/services/$vertical")({
   head: ({ params }) => {
@@ -34,10 +34,8 @@ function VerticalPage() {
   const v = getVertical(vertical)!;
   const projects = projectsByVertical(vertical);
 
-  // Each vertical is its own page — always start at the top.
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [vertical]);
+  // Each vertical is its own page; always start at the top.
+  useScrollTop(vertical);
 
   return (
     <div className="min-h-screen bg-emerald-deep">
@@ -50,9 +48,9 @@ function VerticalPage() {
           <div className="flex items-center gap-6">
             <Link
               to="/"
-              className="group inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/80 transition-colors hover:text-gold"
+              className="group inline-flex items-center gap-2.5 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/80 transition-colors hover:text-gold"
             >
-              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
               Home
             </Link>
             <a
@@ -71,9 +69,9 @@ function VerticalPage() {
           <Link
             to="/"
             hash="services"
-            className="group inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-gold/80 transition-colors hover:text-gold"
+            className="group inline-flex items-center gap-2.5 border border-gold/30 px-5 py-3 text-[0.72rem] uppercase tracking-[0.22em] text-gold/90 transition-all hover:border-gold hover:bg-gold/10 hover:text-gold"
           >
-            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             All verticals
           </Link>
 
