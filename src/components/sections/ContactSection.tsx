@@ -48,7 +48,7 @@ export function ContactSection() {
           </p>
 
           <div className="mt-12 space-y-6">
-            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value={`ahmed@credencegroup.co\nkomal_russell@credencegroup.co\naarish.baig@credencegroup.co`} />
+            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value="ahmed@credencegroup.co" />
             <DetailRow icon={<Phone className="h-4 w-4" />} label="Telephone" value="+91 90000 63200" />
             <DetailRow icon={<MapPin className="h-4 w-4" />} label="Studio" value={`Meenakshi Tech Park, Tower B, 8th Floor\nHyderabad 500032`} />
             <DetailRow icon={<Globe className="h-4 w-4" />} label="Web" value="credencegroup.co" />

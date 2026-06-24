@@ -39,7 +39,7 @@ export function Footer() {
               <SocialLink href="#" label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialLink>
               <SocialLink href="mailto:ahmed@credencegroup.co" label="Email"><Mail className="h-4 w-4" /></SocialLink>
             </div>
-            <p className="mt-6 text-sm text-ivory/55">ahmed@credencegroup.co</p>
+            <p className="mt-6 text-sm text-ivory/55">ahmed@credencegroup.co<br />aarish.baig@credencegroup.co<br />komal_russell@credencegroup.co</p>
           </div>
         </div>
 
