@@ -71,7 +71,7 @@ function ProjectPage() {
             className="group inline-flex items-center gap-2.5 border border-gold/30 px-5 py-3 text-[0.72rem] uppercase tracking-[0.22em] text-gold/90 transition-all hover:border-gold hover:bg-gold/10 hover:text-gold"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            Selected work
+            Our signature projects of distinction.
           </Link>
 
           <motion.div
@@ -129,7 +129,7 @@ function ProjectPage() {
               href="/#contact"
               className="group inline-flex items-center gap-3 border border-gold/60 px-7 py-3.5 text-[0.74rem] uppercase tracking-[0.24em] text-gold transition-all hover:bg-gold hover:text-emerald-deep"
             >
-              Start a project
+              Start your project
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </div>

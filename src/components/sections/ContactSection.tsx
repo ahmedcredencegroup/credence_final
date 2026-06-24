@@ -41,14 +41,14 @@ export function ContactSection() {
         >
           <p className="eyebrow mb-5">Begin a Project</p>
           <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
-            Tell us about <span className="italic gold-gradient-text">the room</span>.
+            Tell Us About Your Project
           </h2>
           <p className="mt-6 max-w-md text-sm leading-7 text-ivory/65">
-            We take on a small number of commissions each year. Share the brief and we will respond, personally, within forty-eight hours.
+            We undertake a select number of projects each year to ensure exceptional attention to detail. Share your requirements and our team will respond within 24 hours.
           </p>
 
           <div className="mt-12 space-y-6">
-            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value="ahmed@credencegroup.co" />
+            <DetailRow icon={<Mail className="h-4 w-4" />} label="Email" value={`ahmed@credencegroup.co\nkomal_russell@credencegroup.co\naarish.baig@credencegroup.co`} />
             <DetailRow icon={<Phone className="h-4 w-4" />} label="Telephone" value="+91 90000 63200" />
             <DetailRow icon={<MapPin className="h-4 w-4" />} label="Studio" value={`Meenakshi Tech Park, Tower B, 8th Floor\nHyderabad 500032`} />
             <DetailRow icon={<Globe className="h-4 w-4" />} label="Web" value="credencegroup.co" />

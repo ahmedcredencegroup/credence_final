@@ -10,7 +10,7 @@ const stats = [
 
 const principals = [
   { name: "Ahmed Bashoeb", role: "Managing Director", email: "ahmed@credencegroup.co", phone: "+91 90000 63200" },
-  { name: "Aarish Baig", role: "Managing Director", email: "aarishbaig@credencegroup.co", phone: "+91 79899 05052" },
+  { name: "Aarish Baig", role: "Managing Director", email: "aarish.baig@credencegroup.co", phone: "+91 79899 05052" },
   { name: "Syed Abdul Kareem", role: "Managing Director", email: "kareem@credencegroup.co", phone: "+91 00000 00000" },
 ];
 

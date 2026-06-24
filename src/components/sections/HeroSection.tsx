@@ -64,7 +64,7 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 1.2 }}
           className="mt-8 max-w-xl text-base leading-relaxed text-ivory/75 md:text-lg"
         >
-          A Hyderabad-based practice in interior design, turnkey delivery and infrastructure, building trust and creating value, one considered space at a time.
+          Hyderabad-based interior design and execution firm specializing in luxury residential, commercial, and hospitality spaces crafted with precision, purpose, and timeless elegance.
         </motion.p>
 
         <motion.div

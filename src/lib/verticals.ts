@@ -31,12 +31,12 @@ export const verticals: Vertical[] = [
   {
     slug: "concept-design-sales",
     n: "02",
-    title: "Concept Design & Sales",
-    body: "Concept-led design for furniture showrooms and retail environments, backed by precision-engineered modular solutions that are simple to specify and acquire.",
-    deliverables: ["Furniture showrooms", "Retail environments", "Modular solutions", "Design consultation"],
+    title: "Concept design and sales",
+    body: "Client-centric and focused on delivering to the statement of uncompromising quality. We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last.",
+    deliverables: ["Uncompromising quality", "Flawless execution", "Single point of contact", "End-to-end delivery"],
     image: img2,
     intro:
-      "Concept-led design for furniture showrooms and retail environments, paired with precision-engineered modular solutions that are simple to specify, sell and install.",
+      "Client-centric and focused on delivering to the statement of uncompromising quality. We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last. Our in-house team of specialists collaborates seamlessly to deliver efficiency and precision from concept to completion. A dedicated project lead oversees every stage of the project, ensuring clear communication, smooth coordination, and timely delivery of key milestones.",
     hasProjects: false,
   },
   {

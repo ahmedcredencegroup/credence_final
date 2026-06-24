@@ -16,13 +16,13 @@ export function ProjectsSection() {
       <div className="mx-auto max-w-[1480px] px-6 lg:px-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="eyebrow mb-5">Selected Work</p>
+            <p className="eyebrow mb-5">Our Signature Projects</p>
             <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
               Projects of <span className="italic gold-gradient-text">consequence</span>.
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-7 text-ivory/65">
-            A selection of our signature residences across Hyderabad. Exceptional craftsmanship, thoughtful design and uncompromising quality.
+            A selection of our signature residences across Hyderabad Ensuring exceptional craftsmanship, thoughtful design and uncompromising quality.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export function ProjectsSection() {
             href="#contact"
             className="group inline-flex items-center gap-3 border border-gold/60 px-7 py-3.5 text-[0.74rem] uppercase tracking-[0.24em] text-gold transition-all hover:bg-gold hover:text-emerald-deep"
           >
-            Commission a Project
+            Start your Project
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         </div>

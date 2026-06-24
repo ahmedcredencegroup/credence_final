@@ -25,8 +25,7 @@ export function PhilosophySection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-2 font-display text-[clamp(1.75rem,4vw,3.5rem)] italic leading-[1.2] text-ivory"
         >
-          A well-made interior should feel inevitable,{" "}
-          <span className="gold-gradient-text">never loud, never ornamental for its own sake.</span>
+          We believe great design should feel effortless, where every detail serves a purpose and every space feels naturally complete
         </motion.blockquote>
         <motion.p
           initial={{ opacity: 0 }}
