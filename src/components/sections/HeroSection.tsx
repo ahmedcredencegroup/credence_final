@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="eyebrow mb-6"
         >
-          Credence Group · Interior Design &amp; Turnkey · Hyderabad
+          Credence Group · Interior Design &amp; Turnkey
         </motion.p>
 
         <h1 className="font-display text-[clamp(2.25rem,8vw,6.5rem)] leading-[1.0] text-ivory">

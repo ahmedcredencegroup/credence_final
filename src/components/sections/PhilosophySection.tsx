@@ -34,7 +34,7 @@ export function PhilosophySection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="eyebrow mt-10"
         >
-          Credence Group · Building trust, creating value
+          Building trust, creating value
         </motion.p>
       </div>
     </section>
