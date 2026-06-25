@@ -25,7 +25,8 @@ export function PhilosophySection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-2 font-display text-[clamp(1.75rem,4vw,3.5rem)] italic leading-[1.2] text-ivory"
         >
-          We believe great design should feel effortless, where every detail serves a purpose and every space feels naturally complete
+          We believe great design should feel effortless, where every detail serves a purpose{" "}
+          <span className="gold-gradient-text">and every space feels naturally complete</span>
         </motion.blockquote>
         <motion.p
           initial={{ opacity: 0 }}
