@@ -32,7 +32,7 @@ export const verticals: Vertical[] = [
     slug: "concept-design-sales",
     n: "02",
     title: "Concept design and sales",
-    body: "Client-centric and focused on delivering to the statement of uncompromising quality. We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last.",
+    body: "Right from land acquisition to master planning with design, development, construction, and sales, we deliver integrated real estate solutions that transform vision into successful developments and maximize long-term value.",
     deliverables: ["Uncompromising quality", "Flawless execution", "Single point of contact", "End-to-end delivery"],
     image: img2,
     intro:

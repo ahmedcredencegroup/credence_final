@@ -15,10 +15,10 @@ const principals = [
 ];
 
 const values = [
-  { title: "Client-Centric", body: "Spaces that reflect your vision and lifestyle." },
-  { title: "Uncompromising Quality", body: "The highest standards of craft and detail." },
-  { title: "Flawless Execution", body: "Precision and efficiency, concept to completion." },
-  { title: "Single Point of Contact", body: "One dedicated lead, from sketch to handover." },
+  { title: "Client-Centric", body: "Spaces that reflect your vision and lifestyle focused on delivering to the statement." },
+  { title: "Uncompromising Quality", body: "We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last." },
+  { title: "Flawless Execution", body: "Our in-house team of specialists collaborates seamlessly to deliver efficiency and precision from concept to completion." },
+  { title: "Single Point of Contact", body: "A dedicated project lead oversees every stage of the project, ensuring clear communication, smooth coordination, and timely delivery of key milestones." },
 ];
 
 export function AboutSection() {
