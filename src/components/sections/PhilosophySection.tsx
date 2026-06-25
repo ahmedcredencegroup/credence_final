@@ -3,7 +3,7 @@ import { Emblem } from "@/components/brand/Emblem";
 
 export function PhilosophySection() {
   return (
-    <section id="philosophy" className="relative overflow-hidden bg-emerald-deep py-28 md:py-40">
+    <section id="philosophy" className="relative overflow-hidden bg-emerald-deep py-20 md:py-36">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <Emblem className="h-[80vmin] w-[80vmin] opacity-[0.04]" />
       </div>

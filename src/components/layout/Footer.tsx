@@ -53,7 +53,7 @@ export function Footer() {
 
       {/* Faded wordmark */}
       <div className="pointer-events-none mt-12 select-none overflow-hidden">
-        <p className="text-center font-display text-[18vw] leading-none text-gold/[0.04]">CREDENCE</p>
+        <p className="text-center font-display text-[12vw] leading-none text-gold/[0.04]">CREDENCE</p>
       </div>
     </footer>
   );

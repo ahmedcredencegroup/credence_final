@@ -60,7 +60,7 @@ export function AboutSection() {
       </div>
 
       {/* Story + stats */}
-      <div className="mx-auto max-w-[1280px] px-6 py-24 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1280px] px-6 py-16 lg:px-12 lg:py-32">
         <div className="grid gap-16 md:grid-cols-[3fr_2fr]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -85,13 +85,13 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="border-l border-gold/20 pl-8"
+            className="md:border-l md:border-gold/20 md:pl-8"
           >
             <p className="eyebrow mb-6">In numbers</p>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-display text-5xl gold-gradient-text">{s.n}</dt>
+                  <dt className="font-display text-4xl gold-gradient-text md:text-5xl">{s.n}</dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
                 </div>
               ))}

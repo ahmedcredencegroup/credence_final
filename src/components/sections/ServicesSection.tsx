@@ -16,7 +16,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="relative bg-emerald-deep py-28 md:py-36">
+    <section id="services" className="relative bg-emerald-deep py-20 md:py-36">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

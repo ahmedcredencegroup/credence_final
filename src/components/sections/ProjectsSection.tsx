@@ -12,7 +12,7 @@ export function ProjectsSection() {
   const list = filter === "All" ? projects : projects.filter((p) => p.cat === filter);
 
   return (
-    <section id="projects" className="relative bg-emerald-mid py-28 md:py-36">
+    <section id="projects" className="relative bg-emerald-mid py-20 md:py-36">
       <div className="mx-auto max-w-[1480px] px-6 lg:px-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>

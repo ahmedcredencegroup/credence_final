@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export function IntroSection() {
   return (
-    <section id="intro" className="relative bg-emerald-deep py-28 md:py-40">
+    <section id="intro" className="relative bg-emerald-deep py-20 md:py-36">
       <div className="mx-auto grid max-w-[1280px] gap-12 px-6 md:grid-cols-[1fr_2fr] lg:px-12">
         <motion.p
           initial={{ opacity: 0, y: 16 }}

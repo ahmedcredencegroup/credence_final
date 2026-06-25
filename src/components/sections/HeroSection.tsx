@@ -14,7 +14,7 @@ const headline: { word: string; gold?: boolean }[] = [
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative h-[100svh] min-h-[680px] w-full overflow-hidden">
+    <section id="home" className="relative h-[100svh] min-h-[600px] w-full overflow-hidden">
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.12 }}
@@ -34,7 +34,7 @@ export function HeroSection() {
 
       <Emblem className="absolute right-6 top-28 hidden h-32 w-32 opacity-[0.18] md:right-12 md:block lg:h-44 lg:w-44" />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1480px] flex-col justify-end px-6 pb-20 lg:px-12 lg:pb-28">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1480px] flex-col justify-end px-6 pb-16 pt-24 lg:px-12 lg:pb-28">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export function HeroSection() {
           Credence Group · Interior Design &amp; Turnkey · Hyderabad
         </motion.p>
 
-        <h1 className="font-display text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.98] text-ivory">
+        <h1 className="font-display text-[clamp(2.25rem,8vw,6.5rem)] leading-[1.0] text-ivory">
           {headline.map((item, i) => (
             <motion.span
               key={i}

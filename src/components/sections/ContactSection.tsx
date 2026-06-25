@@ -30,7 +30,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative bg-emerald-mid py-28 md:py-36">
+    <section id="contact" className="relative bg-emerald-mid py-20 md:py-36">
       <div className="mx-auto grid max-w-[1280px] gap-14 px-6 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-12">
         {/* Left — copy + details */}
         <motion.div
