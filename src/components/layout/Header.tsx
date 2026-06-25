@@ -41,8 +41,8 @@ export function Header() {
     >
       <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">
         <a href="#home" className="flex items-center gap-3" aria-label="Credence Group — home">
-          <Emblem className="h-[4.5rem] w-[4.5rem] md:hidden" />
-          <Wordmark className="hidden h-14 w-auto md:block" />
+          <Emblem className="h-9 w-9 md:hidden" />
+          <Wordmark className="hidden h-7 w-auto md:block" />
         </a>
 
         <nav className="hidden items-center gap-10 md:flex">
