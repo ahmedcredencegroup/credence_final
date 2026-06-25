@@ -14,6 +14,8 @@ export type Vertical = {
   intro: string;
   /** When true, the vertical page renders the project index instead of a placeholder. */
   hasProjects: boolean;
+  /** Optional feature video shown in place of the featured image on the vertical page. */
+  video?: string;
 };
 
 export const verticals: Vertical[] = [
@@ -33,8 +35,9 @@ export const verticals: Vertical[] = [
     n: "02",
     title: "Concept design and sales",
     body: "Right from land acquisition to master planning with design, development, construction, and sales, we deliver integrated real estate solutions that transform vision into successful developments and maximize long-term value.",
-    deliverables: ["Uncompromising quality", "Flawless execution", "Single point of contact", "End-to-end delivery"],
+    deliverables: ["Acquisition", "Masterplanning", "Development", "Design", "Construction", "Positioning", "Sales"],
     image: img2,
+    video: "/concept-design.mp4",
     intro:
       "Client-centric and focused on delivering to the statement of uncompromising quality. We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last. Our in-house team of specialists collaborates seamlessly to deliver efficiency and precision from concept to completion. A dedicated project lead oversees every stage of the project, ensuring clear communication, smooth coordination, and timely delivery of key milestones.",
     hasProjects: false,

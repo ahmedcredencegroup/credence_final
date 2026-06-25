@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Footer } from "@/components/layout/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
+import { VideoFeature } from "@/components/VideoFeature";
 import { getVertical, verticals } from "@/lib/verticals";
 import { projectsByVertical } from "@/lib/projects";
 import { useScrollTop } from "@/hooks/use-scroll-top";
@@ -75,49 +76,98 @@ function VerticalPage() {
             All verticals
           </Link>
 
-          <div className="mt-10 grid gap-12 md:grid-cols-[3fr_2fr] md:gap-16">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <p className="eyebrow mb-5">Vertical {v.n}</p>
-              <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-ivory">
-                {v.title}
-              </h1>
-              <p className="mt-7 max-w-xl text-base leading-8 text-ivory/75">{v.intro}</p>
-            </motion.div>
+          {v.video ? (
+            <>
+              {/* Heading */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mt-10 text-center"
+              >
+                <p className="eyebrow mb-5">Vertical {v.n}</p>
+                <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-ivory">
+                  {v.title}
+                </h1>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="border-l border-gold/20 pl-8"
-            >
-              <p className="eyebrow mb-6">What we deliver</p>
-              <ul className="space-y-3.5">
-                {v.deliverables.map((d) => (
-                  <li key={d} className="flex items-start gap-3 text-sm leading-7 text-ivory/75">
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold/80" />
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+              {/* Video, then text */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="mx-auto mt-10 max-w-[720px]"
+              >
+                <VideoFeature src={v.video} label={`${v.title} — Credence Group`} />
+              </motion.div>
+
+              <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-8 text-ivory/75">{v.intro}</p>
+
+              {/* What we deliver — delivery stages */}
+              <div className="mt-16 border-t border-gold/15 pt-12">
+                <p className="eyebrow mb-10 text-center">What we deliver</p>
+                <ol className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-4">
+                  {v.deliverables.map((d, i) => (
+                    <li key={d} className="flex flex-col items-center text-center">
+                      <span className="font-display text-3xl leading-none gold-gradient-text">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="mt-3 block h-px w-8 bg-gold/40" />
+                      <span className="mt-3 block text-sm uppercase tracking-[0.14em] text-ivory/85">
+                        {d}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </>
+          ) : (
+            <div className="mt-10 grid gap-12 md:grid-cols-[3fr_2fr] md:gap-16">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <p className="eyebrow mb-5">Vertical {v.n}</p>
+                <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-ivory">
+                  {v.title}
+                </h1>
+                <p className="mt-7 max-w-xl text-base leading-8 text-ivory/75">{v.intro}</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="border-l border-gold/20 pl-8"
+              >
+                <p className="eyebrow mb-6">What we deliver</p>
+                <ul className="space-y-3.5">
+                  {v.deliverables.map((d) => (
+                    <li key={d} className="flex items-start gap-3 text-sm leading-7 text-ivory/75">
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold/80" />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          )}
         </section>
 
-        {/* Featured image */}
-        <section className="mx-auto max-w-[1480px] px-6 lg:px-12">
-          <div className="relative aspect-[16/7] w-full overflow-hidden bg-emerald-mid">
-            <img
-              src={v.image}
-              alt={`${v.title} — Credence Group`}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/60 via-transparent to-transparent" />
-          </div>
-        </section>
+        {/* Featured image (non-video verticals) */}
+        {!v.video && (
+          <section className="mx-auto max-w-[1480px] px-6 lg:px-12">
+            <div className="relative aspect-[16/7] w-full overflow-hidden bg-emerald-mid">
+              <img
+                src={v.image}
+                alt={`${v.title} — Credence Group`}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/60 via-transparent to-transparent" />
+            </div>
+          </section>
+        )}
 
         {/* Body */}
         {v.hasProjects ? (
@@ -140,6 +190,8 @@ function VerticalPage() {
               ))}
             </div>
           </section>
+        ) : v.video ? (
+          <div className="py-16 lg:py-24" />
         ) : (
           <section className="mx-auto max-w-[1280px] px-6 py-24 lg:px-12 lg:py-32">
             <div className="border border-gold/20 bg-emerald-mid/40 px-8 py-16 text-center md:px-16 md:py-24">
