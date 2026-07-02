@@ -96,7 +96,7 @@ function VerticalPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="mx-auto mt-10 max-w-5xl"
+                className="mx-auto mt-10 max-w-[720px]"
               >
                 <VideoFeature src={v.video} label={`${v.title} — Credence Group`} />
               </motion.div>
