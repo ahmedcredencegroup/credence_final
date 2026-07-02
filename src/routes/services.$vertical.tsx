@@ -1,6 +1,5 @@
-import { useRef, useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { motion, useScroll, useMotionValue, useMotionValueEvent } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Footer } from "@/components/layout/Footer";
@@ -31,40 +30,6 @@ export const Route = createFileRoute("/services/$vertical")({
   component: VerticalPage,
 });
 
-const deliverableDescriptions: Record<string, string> = {
-  "Acquisition": "Identifying and securing high-potential land parcels in strategic locations.",
-  "Masterplanning": "Designing the overarching blueprint, zoning, and structural framework for the development.",
-  "Development": "Managing feasibility studies, regulatory approvals, and project development milestones.",
-  "Design": "Crafting premium architectural and interior concepts that balance aesthetics and function.",
-  "Construction": "Executing construction works with absolute precision, top-tier materials, and in-house management.",
-  "Positioning": "Formulating branding, messaging, and market presence to highlight distinct value.",
-  "Sales": "Connecting clients with signature real estate opportunities through dedicated sales execution."
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 80,
-      damping: 15,
-    },
-  },
-};
-
 function VerticalPage() {
   const { vertical } = Route.useParams();
   const v = getVertical(vertical)!;
@@ -72,41 +37,6 @@ function VerticalPage() {
 
   // Each vertical is its own page; always start at the top.
   useScrollTop(vertical);
-
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const olRef = useRef<HTMLOListElement>(null);
-  const scrollRangeRef = useRef(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  const x = useMotionValue(0);
-
-  useEffect(() => {
-    if (!v.video) return;
-
-    const calculateRange = () => {
-      if (olRef.current && viewportRef.current) {
-        const totalWidth = olRef.current.scrollWidth;
-        const visibleWidth = viewportRef.current.clientWidth;
-        scrollRangeRef.current = Math.max(0, totalWidth - visibleWidth);
-      }
-    };
-
-    const timer = setTimeout(calculateRange, 200);
-    window.addEventListener("resize", calculateRange);
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("resize", calculateRange);
-    };
-  }, [v.video, vertical]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    x.set(-latest * scrollRangeRef.current);
-  });
 
   return (
     <div className="min-h-screen bg-emerald-deep">
@@ -172,6 +102,24 @@ function VerticalPage() {
               </motion.div>
 
               <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-8 text-ivory/75">{v.intro}</p>
+
+              {/* What we deliver — delivery stages */}
+              <div className="mt-16 border-t border-gold/15 pt-12">
+                <p className="eyebrow mb-10 text-center">What we deliver</p>
+                <ol className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-4">
+                  {v.deliverables.map((d, i) => (
+                    <li key={d} className="flex flex-col items-center text-center">
+                      <span className="font-display text-3xl leading-none gold-gradient-text">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="mt-3 block h-px w-8 bg-gold/40" />
+                      <span className="mt-3 block text-sm uppercase tracking-[0.14em] text-ivory/85">
+                        {d}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </>
           ) : (
             <div className="mt-10 grid gap-12 md:grid-cols-[3fr_2fr] md:gap-16">
@@ -206,51 +154,6 @@ function VerticalPage() {
             </div>
           )}
         </section>
-
-        {/* What we deliver — scroll-linked horizontal timeline (standalone for proper sticky) */}
-        {v.video && (
-          <div ref={sectionRef} className="relative h-[300vh] border-t border-gold/15">
-            <div ref={viewportRef} className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-              <p className="eyebrow mb-12 text-center">What we deliver</p>
-
-              <div className="mx-auto w-full max-w-[1480px] px-6 lg:px-12 relative">
-                <div className="relative">
-                  <motion.ol 
-                    ref={olRef}
-                    style={{ x }}
-                    className="flex gap-6 md:gap-8 relative z-10 w-max pr-[20vw]"
-                  >
-                    {/* Horizontal timeline connecting line */}
-                    <div className="absolute top-[80px] md:top-[100px] left-8 right-8 h-[1px] bg-gradient-to-r from-gold/10 via-gold/30 to-gold/10 -z-10" />
-
-                    {v.deliverables.map((d, i) => {
-                      const description = deliverableDescriptions[d] || "";
-                      return (
-                        <motion.li 
-                          key={d} 
-                          className="flex-shrink-0 w-[260px] md:w-[320px] bg-emerald-mid/10 border border-gold/10 hover:border-gold/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,0,0,0.5),0_0_20px_rgba(214,183,132,0.03)] group cursor-pointer relative"
-                        >
-                          <span className="font-display text-4xl md:text-5xl leading-none gold-gradient-text block transition-transform duration-500 group-hover:scale-105 origin-left">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <div className="mt-4 md:mt-5 h-0.5 w-10 bg-gold/30 transition-all duration-500 group-hover:w-20 group-hover:bg-gold" />
-                          <h3 className="mt-4 md:mt-5 font-display text-lg md:text-xl text-ivory tracking-wide group-hover:text-gold transition-colors duration-500">
-                            {d}
-                          </h3>
-                          {description && (
-                            <p className="mt-3 text-xs md:text-sm leading-relaxed text-ivory/65 group-hover:text-ivory/80 transition-colors duration-500">
-                              {description}
-                            </p>
-                          )}
-                        </motion.li>
-                      );
-                    })}
-                  </motion.ol>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Featured image (non-video verticals) */}
         {!v.video && (
