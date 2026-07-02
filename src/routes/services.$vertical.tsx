@@ -30,6 +30,30 @@ export const Route = createFileRoute("/services/$vertical")({
   component: VerticalPage,
 });
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 15,
+    },
+  },
+};
+
 function VerticalPage() {
   const { vertical } = Route.useParams();
   const v = getVertical(vertical)!;
@@ -104,21 +128,36 @@ function VerticalPage() {
               <p className="mx-auto mt-12 max-w-3xl text-center text-base leading-8 text-ivory/75">{v.intro}</p>
 
               {/* What we deliver — delivery stages */}
-              <div className="mt-16 border-t border-gold/15 pt-12">
-                <p className="eyebrow mb-10 text-center">What we deliver</p>
-                <ol className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-4">
-                  {v.deliverables.map((d, i) => (
-                    <li key={d} className="flex flex-col items-center text-center">
-                      <span className="font-display text-3xl leading-none gold-gradient-text">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="mt-3 block h-px w-8 bg-gold/40" />
-                      <span className="mt-3 block text-sm uppercase tracking-[0.14em] text-ivory/85">
-                        {d}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
+              <div className="mt-20 border-t border-gold/15 pt-16">
+                <p className="eyebrow mb-12 text-center">What we deliver</p>
+                <div className="relative">
+                  {/* Timeline connecting line */}
+                  <div className="absolute top-[112px] left-10 right-10 h-[1px] bg-gradient-to-r from-gold/5 via-gold/25 to-gold/5 -z-10 hidden md:block" />
+                  
+                  <motion.ol 
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="flex gap-6 overflow-x-auto pb-8 pt-4 px-2 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gold/15 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gold/30"
+                  >
+                    {v.deliverables.map((d, i) => (
+                      <motion.li 
+                        key={d} 
+                        variants={cardVariants}
+                        className="flex-shrink-0 w-[240px] md:w-[280px] bg-emerald-mid/10 border border-gold/10 hover:border-gold/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,0,0,0.5),0_0_20px_rgba(214,183,132,0.03)] group cursor-pointer relative"
+                      >
+                        <span className="font-display text-5xl md:text-6xl leading-none gold-gradient-text block transition-transform duration-500 group-hover:scale-105 origin-left">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div className="mt-5 h-0.5 w-10 bg-gold/30 transition-all duration-500 group-hover:w-20 group-hover:bg-gold" />
+                        <span className="mt-5 block text-sm uppercase tracking-[0.18em] text-ivory/85 leading-relaxed transition-colors duration-500 group-hover:text-gold">
+                          {d}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </motion.ol>
+                </div>
               </div>
             </>
           ) : (
