@@ -78,6 +78,7 @@ function VerticalPage() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
+    offset: ["start start", "end end"],
   });
 
   const [scrollRange, setScrollRange] = useState(0);
@@ -102,7 +103,7 @@ function VerticalPage() {
     };
   }, [v.video, vertical]);
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, scrollRange]);
+  const x = useTransform(scrollYProgress, (latest) => latest * scrollRange);
 
   return (
     <div className="min-h-screen bg-emerald-deep">
