@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValue, useMotionValueEvent } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Footer } from "@/components/layout/Footer";
@@ -74,6 +74,7 @@ function VerticalPage() {
   useScrollTop(vertical);
 
   const sectionRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const olRef = useRef<HTMLOListElement>(null);
   const scrollRangeRef = useRef(0);
 
@@ -82,16 +83,16 @@ function VerticalPage() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -1]);
+  const x = useMotionValue(0);
 
   useEffect(() => {
     if (!v.video) return;
 
     const calculateRange = () => {
-      if (olRef.current) {
+      if (olRef.current && viewportRef.current) {
         const totalWidth = olRef.current.scrollWidth;
-        const visibleWidth = olRef.current.clientWidth;
-        scrollRangeRef.current = totalWidth - visibleWidth;
+        const visibleWidth = viewportRef.current.clientWidth;
+        scrollRangeRef.current = Math.max(0, totalWidth - visibleWidth);
       }
     };
 
@@ -209,9 +210,9 @@ function VerticalPage() {
         {/* What we deliver — scroll-linked horizontal timeline (standalone for proper sticky) */}
         {v.video && (
           <div ref={sectionRef} className="relative h-[300vh] border-t border-gold/15">
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+            <div ref={viewportRef} className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
               <p className="eyebrow mb-12 text-center">What we deliver</p>
-              
+
               <div className="mx-auto w-full max-w-[1480px] px-6 lg:px-12 relative">
                 <div className="relative">
                   <motion.ol 
