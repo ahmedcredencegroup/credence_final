@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Footer } from "@/components/layout/Footer";
@@ -75,13 +75,14 @@ function VerticalPage() {
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const olRef = useRef<HTMLOListElement>(null);
+  const scrollRangeRef = useRef(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  const [scrollRange, setScrollRange] = useState(0);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -1]);
 
   useEffect(() => {
     if (!v.video) return;
@@ -90,12 +91,11 @@ function VerticalPage() {
       if (olRef.current) {
         const totalWidth = olRef.current.scrollWidth;
         const visibleWidth = olRef.current.clientWidth;
-        setScrollRange(-(totalWidth - visibleWidth));
+        scrollRangeRef.current = totalWidth - visibleWidth;
       }
     };
 
-    const timer = setTimeout(calculateRange, 100);
-
+    const timer = setTimeout(calculateRange, 200);
     window.addEventListener("resize", calculateRange);
     return () => {
       clearTimeout(timer);
@@ -103,7 +103,9 @@ function VerticalPage() {
     };
   }, [v.video, vertical]);
 
-  const x = useTransform(scrollYProgress, (latest) => latest * scrollRange);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    x.set(-latest * scrollRangeRef.current);
+  });
 
   return (
     <div className="min-h-screen bg-emerald-deep">
