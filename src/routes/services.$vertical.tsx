@@ -30,6 +30,16 @@ export const Route = createFileRoute("/services/$vertical")({
   component: VerticalPage,
 });
 
+const deliverableDescriptions: Record<string, string> = {
+  "Acquisition": "Identifying and securing high-potential land parcels in strategic locations.",
+  "Masterplanning": "Designing the overarching blueprint, zoning, and structural framework for the development.",
+  "Development": "Managing feasibility studies, regulatory approvals, and project development milestones.",
+  "Design": "Crafting premium architectural and interior concepts that balance aesthetics and function.",
+  "Construction": "Executing construction works with absolute precision, top-tier materials, and in-house management.",
+  "Positioning": "Formulating branding, messaging, and market presence to highlight distinct value.",
+  "Sales": "Connecting clients with signature real estate opportunities through dedicated sales execution."
+};
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -129,33 +139,48 @@ function VerticalPage() {
 
               {/* What we deliver — delivery stages */}
               <div className="mt-20 border-t border-gold/15 pt-16">
-                <p className="eyebrow mb-12 text-center">What we deliver</p>
-                <div className="relative">
-                  {/* Timeline connecting line */}
-                  <div className="absolute top-[112px] left-10 right-10 h-[1px] bg-gradient-to-r from-gold/5 via-gold/25 to-gold/5 -z-10 hidden md:block" />
+                <p className="eyebrow mb-16 text-center">What we deliver</p>
+                <div className="mx-auto max-w-3xl relative">
+                  {/* Vertical connecting line */}
+                  <div className="absolute left-6 md:left-8 top-4 bottom-4 w-[1px] bg-gradient-to-b from-gold/5 via-gold/25 to-gold/5 -z-10" />
                   
                   <motion.ol 
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    className="flex gap-6 overflow-x-auto pb-8 pt-4 px-2 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gold/15 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gold/30"
+                    className="space-y-10 md:space-y-12 relative z-10"
                   >
-                    {v.deliverables.map((d, i) => (
-                      <motion.li 
-                        key={d} 
-                        variants={cardVariants}
-                        className="flex-shrink-0 w-[240px] md:w-[280px] bg-emerald-mid/10 border border-gold/10 hover:border-gold/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,0,0,0.5),0_0_20px_rgba(214,183,132,0.03)] group cursor-pointer relative"
-                      >
-                        <span className="font-display text-5xl md:text-6xl leading-none gold-gradient-text block transition-transform duration-500 group-hover:scale-105 origin-left">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <div className="mt-5 h-0.5 w-10 bg-gold/30 transition-all duration-500 group-hover:w-20 group-hover:bg-gold" />
-                        <span className="mt-5 block text-sm uppercase tracking-[0.18em] text-ivory/85 leading-relaxed transition-colors duration-500 group-hover:text-gold">
-                          {d}
-                        </span>
-                      </motion.li>
-                    ))}
+                    {v.deliverables.map((d, i) => {
+                      const description = deliverableDescriptions[d] || "";
+                      return (
+                        <motion.li 
+                          key={d} 
+                          variants={cardVariants}
+                          className="relative pl-14 md:pl-20 flex flex-col items-start group"
+                        >
+                          {/* Circular Timeline Indicator */}
+                          <div className="absolute left-6 md:left-8 top-1 md:top-3 -translate-x-1/2 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-full bg-emerald-deep border border-gold/15 group-hover:border-gold/55 flex-shrink-0 font-display text-base md:text-lg text-gold/75 shadow-lg group-hover:shadow-[0_0_15px_rgba(214,183,132,0.12)] group-hover:scale-105 transition-all duration-500 backdrop-blur-md">
+                            {String(i + 1).padStart(2, "0")}
+                          </div>
+
+                          {/* Detail Card */}
+                          <div className="w-full bg-emerald-mid/10 border border-gold/10 hover:border-gold/25 rounded-2xl p-6 md:p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.45),0_0_20px_rgba(214,183,132,0.02)] cursor-pointer">
+                            <h3 className="font-display text-xl md:text-2xl text-ivory tracking-wide group-hover:text-gold transition-colors duration-500">
+                              {d}
+                            </h3>
+                            {description && (
+                              <>
+                                <div className="mt-3 h-px w-8 bg-gold/25 group-hover:w-16 group-hover:bg-gold transition-all duration-500" />
+                                <p className="mt-3.5 text-sm leading-relaxed text-ivory/65 group-hover:text-ivory/80 transition-colors duration-500">
+                                  {description}
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </motion.li>
+                      );
+                    })}
                   </motion.ol>
                 </div>
               </div>
