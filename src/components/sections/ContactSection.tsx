@@ -6,8 +6,9 @@ import { toast } from "sonner";
 const projectTypes = ["Interior Design", "Turnkey Project", "Infrastructure", "Furniture / Modular", "Other"];
 const budgets = ["Under ₹25L", "₹25L – ₹1Cr", "₹1Cr – ₹5Cr", "₹5Cr+", "Prefer not to say"];
 
-// Google Apps Script web-app URL that appends each submission to the inquiries
-// sheet. Set VITE_CONTACT_ENDPOINT in .env locally and in Netlify's environment.
+// Google Apps Script web-app URL that emails each submission to the studio
+// (see docs/contact-form-setup.md). Set VITE_CONTACT_ENDPOINT in .env locally
+// and in Netlify's environment.
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
 
 export function ContactSection() {

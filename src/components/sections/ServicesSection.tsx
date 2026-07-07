@@ -31,10 +31,10 @@ export function ServicesSection() {
         </div>
 
         <div className="mt-16 grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
-          {/* Image panel */}
-          <div className="relative order-2 md:order-1">
-            <div className="sticky top-28 overflow-hidden bg-emerald-mid">
-              <div className="relative aspect-[4/5] w-full">
+          {/* Image panel — matches the list column's height on desktop, so it doesn't run taller than the 3 entries beside it */}
+          <div className="relative order-2 md:order-1 md:h-full">
+            <div className="sticky top-28 overflow-hidden bg-emerald-mid md:h-full">
+              <div className="relative aspect-[4/5] w-full md:aspect-auto md:h-full">
                 <AnimatePresence>
                   <motion.img
                     key={current.image}
