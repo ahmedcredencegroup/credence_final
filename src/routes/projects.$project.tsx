@@ -38,7 +38,7 @@ function ProjectPage() {
   return (
     <div className="min-h-screen bg-emerald-deep">
       {/* Slim header */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/15 bg-emerald-deep/95">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/15 bg-emerald-deep/98 backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">
           <Link to="/" aria-label="Credence Group home">
             <Wordmark className="h-7 w-auto" />

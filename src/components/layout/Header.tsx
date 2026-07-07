@@ -35,12 +35,12 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-emerald-deep/95 border-b border-gold/15"
-          : "bg-transparent border-b border-transparent"
+          ? "border-b border-gold/15 bg-emerald-deep/98 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">
-        <a href="#home" className="flex items-center gap-3" aria-label="Credence Group — home">
+        <a href="#home" className="-my-2.5 flex items-center gap-3 py-2.5" aria-label="Credence Group — home">
           <Emblem className="h-9 w-9 md:hidden" />
           <Wordmark className="hidden h-7 w-auto md:block" />
         </a>
@@ -75,7 +75,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="text-ivory md:hidden"
+          className="-m-2.5 p-2.5 text-ivory md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

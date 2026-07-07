@@ -94,6 +94,8 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   section[id] {
@@ -103,6 +105,14 @@
   ::selection {
     background: var(--gold);
     color: var(--emerald-deep);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 1px;
   }
 
   @media (prefers-reduced-motion: reduce) {
