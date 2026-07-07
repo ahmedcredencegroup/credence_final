@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero-interior.jpg";
+import heroImgMobile from "@/assets/hero-interior-mobile.jpg";
 import { Emblem } from "@/components/brand/Emblem";
 
 const headline: { word: string; gold?: boolean }[] = [
@@ -17,22 +18,25 @@ export function HeroSection() {
     <section id="home" className="relative h-[100svh] min-h-[600px] w-full overflow-hidden">
       <motion.div
         className="absolute inset-0"
-        initial={{ scale: 1.12 }}
+        initial={{ scale: 1.06 }}
         animate={{ scale: 1 }}
         transition={{ duration: 14, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img
-          src={heroImg}
-          alt="Cinematic emerald-toned luxury living room at dusk"
-          width={1920}
-          height={1280}
-          className="h-full w-full object-cover"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroImgMobile} />
+          <img
+            src={heroImg}
+            alt="Cinematic emerald-toned luxury living room at dusk"
+            width={1920}
+            height={1080}
+            className="h-full w-full object-cover"
+          />
+        </picture>
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute inset-0 bg-emerald-deep/35" />
       </motion.div>
 
-      <Emblem className="absolute right-6 top-28 hidden h-32 w-32 opacity-[0.18] md:right-12 md:block lg:h-44 lg:w-44" />
+      <Emblem className="absolute right-6 top-24 h-16 w-16 opacity-[0.16] md:right-12 md:top-28 md:h-32 md:w-32 md:opacity-[0.18] lg:h-44 lg:w-44" />
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1480px] flex-col justify-end px-6 pb-16 pt-24 lg:px-12 lg:pb-28">
         <motion.p

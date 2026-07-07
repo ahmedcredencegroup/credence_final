@@ -27,7 +27,7 @@ export function ProjectsSection() {
         </div>
 
         {/* Filters */}
-        <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 border-y border-gold/15 py-4">
+        <div className="mt-12 flex flex-wrap items-center gap-x-6 border-y border-gold/15 py-1">
           {filters.map((f) => {
             const active = filter === f;
             return (
@@ -35,12 +35,12 @@ export function ProjectsSection() {
                 key={f}
                 type="button"
                 onClick={() => setFilter(f)}
-                className="group relative text-[0.74rem] uppercase tracking-[0.22em] text-ivory/65 transition-colors hover:text-gold"
+                className="group relative inline-flex items-center py-4 text-[0.74rem] uppercase tracking-[0.22em] text-ivory/65 transition-colors hover:text-gold"
               >
                 {f}
                 <span
-                  className={`pointer-events-none absolute -bottom-[18px] left-0 h-px bg-gold transition-all ${
-                    active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-60"
+                  className={`pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gold transition-all ${
+                    active ? "opacity-100" : "opacity-0 group-hover:opacity-60"
                   }`}
                 />
                 {active && <span className="ml-2 text-gold/50">{list.length}</span>}

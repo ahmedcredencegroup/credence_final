@@ -85,7 +85,7 @@ export function ServicesSection() {
                     />
                     <span
                       className={`relative font-display text-2xl transition-colors md:text-3xl ${
-                        isActive ? "text-gold" : "text-ivory/40 group-hover:text-gold/80"
+                        isActive ? "text-gold" : "text-ivory/50 group-hover:text-gold/80"
                       }`}
                     >
                       {v.n}

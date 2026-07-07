@@ -9,6 +9,8 @@ export type Vertical = {
   /** Short blurb used in the homepage services list. */
   body: string;
   deliverables: string[];
+  /** Optional one-line narrative shown under each deliverable in the process timeline (aligned by index). */
+  stageNotes?: string[];
   image: string;
   /** Longer introduction shown at the top of the vertical's own page. */
   intro: string;
@@ -36,6 +38,15 @@ export const verticals: Vertical[] = [
     title: "Concept design and sales",
     body: "Right from land acquisition to master planning with design, development, construction, and sales, we deliver integrated real estate solutions that transform vision into successful developments and maximize long-term value.",
     deliverables: ["Acquisition", "Masterplanning", "Development", "Design", "Construction", "Positioning", "Sales"],
+    stageNotes: [
+      "It begins with the land — securing sites with genuine long-term potential.",
+      "The vision takes shape: zoning, density and flow, mapped before a line is drawn.",
+      "Groundwork comes alive — roads, utilities and the systems that make a place liveable.",
+      "Character emerges as architecture and interiors are composed with real intent.",
+      "The vision rises, built in-house to the standard we would expect of our own home.",
+      "A development given an identity, a voice and its place in the market.",
+      "Handover — keys, closings and the beginning of someone's next chapter.",
+    ],
     image: img2,
     video: "/concept-design.mp4",
     intro:

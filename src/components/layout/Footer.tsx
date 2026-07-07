@@ -45,7 +45,7 @@ export function Footer() {
 
         <div className="mt-20 hairline" />
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-3 text-xs uppercase tracking-[0.24em] text-ivory/35 md:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-3 text-xs uppercase tracking-[0.24em] text-ivory/60 md:flex-row">
           <span>© {new Date().getFullYear()} Credence Group. All rights reserved.</span>
           <span>Crafted with credence.</span>
         </div>
@@ -81,7 +81,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
     <a
       href={href}
       aria-label={label}
-      className="flex h-9 w-9 items-center justify-center border border-gold/30 text-gold/70 transition-all hover:border-gold hover:bg-gold hover:text-emerald-deep"
+      className="flex h-11 w-11 items-center justify-center border border-gold/30 text-gold/70 transition-all hover:border-gold hover:bg-gold hover:text-emerald-deep"
     >
       {children}
     </a>

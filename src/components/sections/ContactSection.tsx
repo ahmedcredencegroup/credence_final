@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Mail, MapPin, Phone, Globe } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Mail, MapPin, Phone, Globe } from "lucide-react";
 import { toast } from "sonner";
 
 const projectTypes = ["Interior Design", "Turnkey Project", "Infrastructure", "Furniture / Modular", "Other"];
@@ -85,7 +85,7 @@ export function ContactSection() {
             Send Inquiry
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </button>
-          <p className="mt-4 text-xs text-ivory/40">By submitting, you agree to be contacted by the studio. We do not share enquiries.</p>
+          <p className="mt-4 text-xs text-ivory/60">By submitting, you agree to be contacted by the studio. We do not share enquiries.</p>
         </motion.form>
       </div>
     </section>
@@ -169,7 +169,7 @@ function SelectField(props: {
       <select
         value={props.value}
         onChange={props.onChange}
-        className={`${fieldClasses} appearance-none pr-6 ${props.value ? "" : "text-ivory/40"}`}
+        className={`${fieldClasses} appearance-none pr-6 ${props.value ? "" : "text-ivory/55"}`}
       >
         <option value="" className="bg-emerald-deep text-ivory/60">Select…</option>
         {props.options.map((o) => (
@@ -178,7 +178,7 @@ function SelectField(props: {
           </option>
         ))}
       </select>
-      <span className="pointer-events-none absolute right-0 top-6 text-gold/60">▾</span>
+      <ChevronDown className="pointer-events-none absolute right-0 top-6 h-4 w-4 text-gold/60" />
       <span className={`${labelClasses} top-0 text-[0.65rem] uppercase tracking-[0.24em] text-gold/80`}>{props.label}</span>
     </label>
   );
