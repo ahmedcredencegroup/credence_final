@@ -1,10 +1,14 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, ChevronDown, Mail, MapPin, Phone, Globe } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Loader2, Mail, MapPin, Phone, Globe } from "lucide-react";
 import { toast } from "sonner";
 
 const projectTypes = ["Interior Design", "Turnkey Project", "Infrastructure", "Furniture / Modular", "Other"];
 const budgets = ["Under ₹25L", "₹25L – ₹1Cr", "₹1Cr – ₹5Cr", "₹5Cr+", "Prefer not to say"];
+
+// Google Apps Script web-app URL that appends each submission to the inquiries
+// sheet. Set VITE_CONTACT_ENDPOINT in .env locally and in Netlify's environment.
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
 
 export function ContactSection() {
   const [form, setForm] = useState({
@@ -15,18 +19,42 @@ export function ContactSection() {
     budget: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill in your name, email and a short message.");
       return;
     }
-    toast.success("Thank you, we'll be in touch within 48 hours.");
-    setForm({ name: "", email: "", phone: "", type: "", budget: "", message: "" });
+
+    setSubmitting(true);
+    try {
+      if (CONTACT_ENDPOINT) {
+        // Apps Script accepts a CORS-safe "simple" POST (text/plain, no preflight);
+        // the response is opaque under no-cors, so we treat a completed request as success.
+        await fetch(CONTACT_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ ...form, submittedAt: new Date().toISOString() }),
+        });
+      } else if (import.meta.env.DEV) {
+        console.warn(
+          "[contact] VITE_CONTACT_ENDPOINT is not set — the inquiry was not delivered anywhere.",
+        );
+      }
+      toast.success("Thank you, we'll be in touch within 48 hours.");
+      setForm({ name: "", email: "", phone: "", type: "", budget: "", message: "" });
+    } catch {
+      toast.error("Sorry — we couldn't send that. Please email us at ahmed@credencegroup.co.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -80,10 +108,15 @@ export function ContactSection() {
 
           <button
             type="submit"
-            className="group mt-8 inline-flex w-full items-center justify-center gap-3 border border-gold bg-gold py-4 text-[0.74rem] uppercase tracking-[0.28em] text-emerald-deep transition-all hover:bg-gold-light sm:w-auto sm:px-10"
+            disabled={submitting}
+            className="group mt-8 inline-flex w-full items-center justify-center gap-3 border border-gold bg-gold py-4 text-[0.74rem] uppercase tracking-[0.28em] text-emerald-deep transition-all hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-10"
           >
-            Send Inquiry
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            {submitting ? "Sending…" : "Send Inquiry"}
+            {submitting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            )}
           </button>
           <p className="mt-4 text-xs text-ivory/60">By submitting, you agree to be contacted by the studio. We do not share enquiries.</p>
         </motion.form>
