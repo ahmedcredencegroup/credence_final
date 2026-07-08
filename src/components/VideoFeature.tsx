@@ -33,7 +33,7 @@ export function VideoFeature({ src, label }: { src: string; label: string }) {
   const actionLabel = status === "playing" ? "Pause" : "Play";
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden bg-emerald-mid">
+    <div className="group/video relative aspect-video w-full overflow-hidden rounded-2xl border border-gold/15 bg-emerald-mid shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
       <video
         ref={ref}
         src={src}
@@ -46,23 +46,17 @@ export function VideoFeature({ src, label }: { src: string; label: string }) {
         onPlay={() => setStatus("playing")}
         onPause={() => setStatus("paused")}
       />
-      {/* Vignette — fades the video's own edges into the page background on all
-          sides instead of cutting off at a hard rectangle, so it reads as part
-          of the page rather than a pasted-in box. */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ boxShadow: "inset 0 0 80px 18px var(--emerald-deep)" }}
-      />
-      {/* Extra darkening toward the bottom edge so the play/pause control stays legible */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-deep/55 via-transparent to-transparent" />
+      {/* Soft gradient at the bottom edge only, purely so the play/pause
+          control stays legible over lighter footage. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-emerald-deep/55 to-transparent" />
 
       <button
         type="button"
         onClick={toggle}
         aria-label={`${actionLabel} video`}
-        className="group absolute bottom-2 right-2 inline-flex h-11 w-11 items-center justify-center bg-transparent text-gold transition-colors hover:text-gold-light [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.55))]"
+        className="absolute bottom-3 right-3 inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/20 bg-emerald-deep/40 text-gold backdrop-blur-md transition-colors hover:border-gold/45 hover:text-gold-light"
       >
-        <Icon className="h-5 w-5" />
+        <Icon className="h-[18px] w-[18px]" />
       </button>
     </div>
   );

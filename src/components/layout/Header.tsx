@@ -95,9 +95,14 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-gold/15 bg-emerald-deep/98 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+        open
+          ? // While the mobile drawer is open, match its solid emerald exactly so
+            // the header reads as one surface with the drawer instead of letting
+            // frozen page content peek through above it.
+            "border-b border-transparent bg-emerald-deep"
+          : scrolled
+            ? "border-b border-gold/15 bg-emerald-deep/98 backdrop-blur-md"
+            : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">

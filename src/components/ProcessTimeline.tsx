@@ -1,7 +1,19 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 
 export type ProcessStep = { title: string; note?: string };
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isDesktop;
+}
 
 /**
  * A narrative process timeline: a gold thread that fills as the section scrolls
@@ -9,12 +21,24 @@ export type ProcessStep = { title: string; note?: string };
  * Vertical (left rail) on mobile, horizontal on desktop.
  */
 export function ProcessTimeline({ steps }: { steps: ProcessStep[] }) {
+  const isDesktop = useIsDesktop();
+  // Remount when the breakpoint changes so the inner useScroll re-subscribes
+  // with the offset appropriate to that layout.
+  return <Timeline key={isDesktop ? "lg" : "sm"} steps={steps} isDesktop={isDesktop} />;
+}
+
+function Timeline({ steps, isDesktop }: { steps: ProcessStep[]; isDesktop: boolean }) {
   const ref = useRef<HTMLOListElement>(null);
   const [reached, setReached] = useState(-1);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 78%", "end 62%"],
+    // The desktop layout is a short horizontal row, so the default range would
+    // fill the thread over very little scroll (too fast). Widen it so the fill
+    // and the step-lighting are drawn out over roughly a full viewport of
+    // scroll. The mobile layout is a tall vertical list that already paces
+    // well, so it keeps the tighter range.
+    offset: isDesktop ? ["start 95%", "end 20%"] : ["start 78%", "end 62%"],
   });
 
   const fill = useTransform(scrollYProgress, [0, 1], [0, 1]);
