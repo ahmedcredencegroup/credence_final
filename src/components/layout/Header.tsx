@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Wordmark } from "@/components/brand/Wordmark";
@@ -31,6 +31,67 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock the page in place while the mobile drawer is open — without this the
+  // background keeps scrolling underneath the fixed overlay (most visible as
+  // iOS rubber-band bounce), which is what made opening the menu after
+  // scrolling feel broken. Freezing body at its current offset (rather than
+  // just overflow:hidden) prevents that bounce and restores the exact scroll
+  // position on close.
+  //
+  // Locking/unlocking is imperative (via this ref) rather than purely
+  // effect-driven so a nav-link click can unlock synchronously — inside the
+  // same click handler, before the browser's default same-page anchor jump
+  // runs — instead of restoring the pre-open scroll position after the fact
+  // and stomping the navigation the click was meant to trigger.
+  const scrollLockRef = useRef<{ scrollY: number; position: string; top: string; width: string } | null>(null);
+
+  const unlockScroll = (restorePosition: boolean) => {
+    const saved = scrollLockRef.current;
+    if (!saved) return;
+    const body = document.body;
+    body.style.position = saved.position;
+    body.style.top = saved.top;
+    body.style.width = saved.width;
+    scrollLockRef.current = null;
+    if (restorePosition) window.scrollTo(0, saved.scrollY);
+  };
+
+  const closeForNavigation = () => {
+    unlockScroll(false);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const body = document.body;
+    scrollLockRef.current = { scrollY, position: body.style.position, top: body.style.top, width: body.style.width };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      unlockScroll(true);
+    };
+  }, [open]);
+
+  // Defensive: if the viewport grows past the mobile breakpoint while the
+  // drawer is open (rotation, resize), drop the open state so the scroll
+  // lock above always gets torn down rather than sticking indefinitely.
+  useEffect(() => {
+    if (!open) return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => { if (mq.matches) setOpen(false); };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -40,7 +101,12 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-6 lg:px-12">
-        <a href="#home" className="-my-2.5 flex items-center gap-3 py-2.5" aria-label="Credence Group — home">
+        <a
+          href="#home"
+          onClick={open ? closeForNavigation : undefined}
+          className="-my-2.5 flex items-center gap-3 py-2.5"
+          aria-label="Credence Group — home"
+        >
           <Emblem className="h-9 w-9 md:hidden" />
           <Wordmark className="hidden h-7 w-auto md:block" />
         </a>
@@ -93,7 +159,7 @@ export function Header() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={() => setOpen(false)}
+              onClick={closeForNavigation}
               className="font-display text-4xl text-ivory hover:text-gold"
             >
               {item.label}
@@ -101,7 +167,7 @@ export function Header() {
           ))}
           <a
             href="#contact"
-            onClick={() => setOpen(false)}
+            onClick={closeForNavigation}
             className="mt-4 border border-gold px-8 py-3 text-[0.72rem] uppercase tracking-[0.28em] text-gold"
           >
             Contact

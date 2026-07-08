@@ -33,7 +33,7 @@ export function VideoFeature({ src, label }: { src: string; label: string }) {
   const actionLabel = status === "playing" ? "Pause" : "Play";
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden border border-gold/20 bg-emerald-mid">
+    <div className="relative aspect-video w-full overflow-hidden bg-emerald-mid">
       <video
         ref={ref}
         src={src}
@@ -46,8 +46,15 @@ export function VideoFeature({ src, label }: { src: string; label: string }) {
         onPlay={() => setStatus("playing")}
         onPause={() => setStatus("paused")}
       />
-      {/* Subtle theme gradient so the control stays legible */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-deep/50 via-transparent to-transparent" />
+      {/* Vignette — fades the video's own edges into the page background on all
+          sides instead of cutting off at a hard rectangle, so it reads as part
+          of the page rather than a pasted-in box. */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ boxShadow: "inset 0 0 80px 18px var(--emerald-deep)" }}
+      />
+      {/* Extra darkening toward the bottom edge so the play/pause control stays legible */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-deep/55 via-transparent to-transparent" />
 
       <button
         type="button"
