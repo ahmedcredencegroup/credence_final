@@ -1,5 +1,58 @@
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
 import aboutImg from "@/assets/about-studio.jpg";
+
+/**
+ * Counts a stat up from zero to its value the first time it scrolls into view.
+ * Parses the numeric part while preserving the original formatting — comma
+ * grouping ("27,500+"), a "%"/"+" suffix, or zero-padding ("03") — so the final
+ * frame reads exactly like the source string.
+ */
+function CountUp({ value, className }: { value: string; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const digits = value.replace(/[^0-9]/g, "");
+  const target = parseInt(digits, 10) || 0;
+  const suffix = value.match(/[^0-9,]+$/)?.[0] ?? "";
+  const hasComma = value.includes(",");
+  const padTo = /^0\d/.test(value) ? digits.length : 0;
+
+  const format = (n: number) => {
+    let s = hasComma ? n.toLocaleString("en-IN") : String(n);
+    if (padTo) s = s.padStart(padTo, "0");
+    return s + suffix;
+  };
+
+  const [display, setDisplay] = useState(() => format(target));
+
+  // Reset to the zero baseline on mount (client only), then animate on reveal.
+  useEffect(() => {
+    setDisplay(format(0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1500;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      setDisplay(format(Math.round(eased * target)));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, target]);
+
+  return (
+    <span ref={ref} className={className}>
+      {display}
+    </span>
+  );
+}
 
 const stats = [
   { n: "03", label: "Verticals" },
@@ -91,7 +144,9 @@ export function AboutSection() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-display text-4xl gold-gradient-text md:text-5xl">{s.n}</dt>
+                  <dt className="font-display text-4xl md:text-5xl">
+                    <CountUp value={s.n} className="gold-gradient-text" />
+                  </dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
                 </div>
               ))}

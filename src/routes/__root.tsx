@@ -13,6 +13,7 @@ import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { GrainOverlay } from "../components/GrainOverlay";
 
 function ClientToaster() {
   const [mounted, setMounted] = useState(false);
@@ -147,6 +148,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <GrainOverlay />
       <ClientToaster />
     </QueryClientProvider>
   );

@@ -4,6 +4,11 @@ import { Emblem } from "@/components/brand/Emblem";
 export function PhilosophySection() {
   return (
     <section id="philosophy" className="relative overflow-hidden bg-emerald-deep py-20 md:py-36">
+      {/* Soft warm glow behind the mark, so the quote sits in a pool of light
+          rather than on a perfectly flat field — adds depth without pattern. */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="h-[55vmin] w-[55vmin] rounded-full bg-gold/[0.07] blur-[120px]" />
+      </div>
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <Emblem className="h-[80vmin] w-[80vmin] opacity-[0.04]" />
       </div>
