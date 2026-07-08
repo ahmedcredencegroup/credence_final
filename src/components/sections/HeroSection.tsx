@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero-interior.jpg";
 import heroImgMobile from "@/assets/hero-interior-mobile.jpg";
 import { Emblem } from "@/components/brand/Emblem";
+import { GoldDust } from "@/components/GoldDust";
 
 const headline: { word: string; gold?: boolean }[] = [
   { word: "Designing" },
@@ -35,6 +36,9 @@ export function HeroSection() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute inset-0 bg-emerald-deep/35" />
       </motion.div>
+
+      {/* Ambient gold dust — sits above the image/overlays but below the z-10 text */}
+      <GoldDust />
 
       <Emblem className="absolute right-6 top-24 h-16 w-16 opacity-[0.16] md:right-12 md:top-28 md:h-32 md:w-32 md:opacity-[0.18] lg:h-44 lg:w-44" />
 

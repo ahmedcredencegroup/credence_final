@@ -126,6 +126,24 @@
   }
 }
 
+/* Ambient hero gold dust — a mote drifts up and fades in then out. */
+@keyframes dust-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--dust-peak, 0.4);
+  }
+  85% {
+    opacity: var(--dust-peak, 0.4);
+  }
+  100% {
+    transform: translate3d(var(--dust-drift, 0), var(--dust-rise, -100px), 0);
+    opacity: 0;
+  }
+}
+
 @utility font-display {
   font-family: var(--font-display);
   font-weight: 400;
