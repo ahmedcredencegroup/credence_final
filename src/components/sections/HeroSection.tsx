@@ -43,7 +43,7 @@ export function HeroSection() {
 
       <Emblem className="absolute right-6 top-24 h-16 w-16 opacity-[0.16] md:right-12 md:top-28 md:h-32 md:w-32 md:opacity-[0.18] lg:h-44 lg:w-44" />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1480px] flex-col justify-end px-6 pb-16 pt-24 lg:px-12 lg:pb-28">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1480px] flex-col justify-end px-6 pb-24 pt-24 lg:px-12 lg:pb-28">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

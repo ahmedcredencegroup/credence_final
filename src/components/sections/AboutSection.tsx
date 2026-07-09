@@ -174,7 +174,7 @@ export function AboutSection() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-display text-4xl md:text-5xl">
+                  <dt className="font-sans text-3xl font-semibold tracking-tight md:text-4xl">
                     <CountUp value={s.n} className="gold-gradient-text" />
                   </dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
@@ -189,7 +189,7 @@ export function AboutSection() {
           <p className="eyebrow mb-5">Leadership</p>
           <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three managing directors. One standard.</h3>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-9 grid gap-4 md:grid-cols-3">
             {principals.map((p, i) => (
               <motion.div
                 key={p.name}
@@ -197,12 +197,14 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="border border-gold/15 bg-emerald-deep/25 p-8 transition-colors hover:border-gold/40"
+                className="border border-gold/15 bg-emerald-deep/25 p-5 transition-colors hover:border-gold/40"
               >
-                <span className="font-display text-3xl gold-gradient-text">{String(i + 1).padStart(2, "0")}</span>
-                <h4 className="mt-5 font-display text-2xl text-ivory">{p.name}</h4>
-                <p className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-gold/80">{p.role}</p>
-                <div className="mt-5 space-y-1.5 border-t border-gold/15 pt-5 text-sm leading-7 text-ivory/65">
+                <span className="font-sans text-[0.65rem] font-semibold tracking-[0.3em] text-gold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h4 className="mt-3 font-display text-lg text-ivory">{p.name}</h4>
+                <p className="mt-0.5 text-[0.65rem] uppercase tracking-[0.18em] text-gold/80">{p.role}</p>
+                <div className="mt-3 space-y-1 border-t border-gold/15 pt-3 text-[0.82rem] leading-6 text-ivory/65">
                   <a href={`mailto:${p.email}`} className="block break-all transition-colors hover:text-gold">{p.email}</a>
                   <a href={`tel:${p.phone.replace(/\s+/g, "")}`} className="block transition-colors hover:text-gold">{p.phone}</a>
                 </div>
