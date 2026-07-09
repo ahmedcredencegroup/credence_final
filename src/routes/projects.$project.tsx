@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Footer } from "@/components/layout/Footer";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { BackButton } from "@/components/BackButton";
 import { getProject } from "@/lib/projects";
 import { getGallery } from "@/lib/galleries";
 import { useScrollTop } from "@/hooks/use-scroll-top";
@@ -45,15 +46,8 @@ function ProjectPage() {
           <Link to="/" aria-label="Credence Group home">
             <Wordmark className="h-7 w-auto" />
           </Link>
-          <div className="flex items-center gap-6">
-            <Link
-              to="/services/$vertical"
-              params={{ vertical: p.vertical }}
-              className="group inline-flex items-center gap-2.5 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/80 transition-colors hover:text-gold"
-            >
-              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-              All projects
-            </Link>
+          <div className="flex items-center gap-4">
+            <BackButton fallbackTo="/" />
             <a
               href="/#contact"
               className="hidden border border-gold/60 px-5 py-2.5 text-[0.72rem] uppercase tracking-[0.24em] text-gold transition-all hover:bg-gold hover:text-emerald-deep sm:inline-block"
@@ -67,20 +61,10 @@ function ProjectPage() {
       <main id="main-content">
         {/* Header */}
         <section className="mx-auto max-w-[1280px] px-6 pb-12 pt-36 lg:px-12 lg:pt-44">
-          <Link
-            to="/"
-            hash="projects"
-            className="group inline-flex items-center gap-2.5 border border-gold/30 px-5 py-3 text-[0.72rem] uppercase tracking-[0.22em] text-gold/90 transition-all hover:border-gold hover:bg-gold/10 hover:text-gold"
-          >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            Our signature projects of distinction.
-          </Link>
-
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-10"
           >
             <p className="eyebrow mb-5">{p.cat}</p>
             <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] text-ivory">

@@ -179,7 +179,7 @@ export function PaperPlane({
               style={
                 {
                   "--trail-start": trailLength,
-                  "--trail-end": -100,
+                  "--trail-end": trailLength - 100,
                   animation: `plane-draw ${flight.dur}s linear forwards`,
                 } as CSSProperties
               }

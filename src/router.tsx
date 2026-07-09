@@ -9,6 +9,11 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // The global `scroll-behavior: smooth` CSS rule (for nav-link clicks)
+    // would otherwise also apply to the browser back/forward scroll
+    // restoration, making it visibly animate all the way down the page
+    // instead of landing instantly where the user actually was.
+    scrollRestorationBehavior: "instant",
     defaultPreloadStaleTime: 0,
   });
 
