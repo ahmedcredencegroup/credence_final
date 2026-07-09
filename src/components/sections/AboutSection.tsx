@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
+import { motion } from "motion/react";
 import aboutImg from "@/assets/about-studio.jpg";
 
 /**
@@ -7,10 +7,14 @@ import aboutImg from "@/assets/about-studio.jpg";
  * Parses the numeric part while preserving the original formatting — comma
  * grouping ("27,500+"), a "%"/"+" suffix, or zero-padding ("03") — so the final
  * frame reads exactly like the source string.
+ *
+ * The reveal is triggered by a scroll/resize + getBoundingClientRect check (the
+ * same approach use-active-section uses reliably here) — motion's
+ * IntersectionObserver-based viewport detection was not firing for these spans.
+ * An invisible sizing copy of the final value reserves the width so the counting
+ * digits never reflow the layout as they grow.
  */
 function CountUp({ value, className }: { value: string; className?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
   const digits = value.replace(/[^0-9]/g, "");
   const target = parseInt(digits, 10) || 0;
   const suffix = value.match(/[^0-9,]+$/)?.[0] ?? "";
@@ -23,33 +27,54 @@ function CountUp({ value, className }: { value: string; className?: string }) {
     return s + suffix;
   };
 
-  const [display, setDisplay] = useState(() => format(target));
+  const [display, setDisplay] = useState(() => format(0));
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
 
-  // Reset to the zero baseline on mount (client only), then animate on reveal.
   useEffect(() => {
-    setDisplay(format(0));
+    const el = ref.current;
+    if (!el) return;
+
+    const run = () => {
+      if (started.current) return;
+      started.current = true;
+      const duration = 1600;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        setDisplay(format(Math.round(eased * target)));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const check = () => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight - 60 && r.bottom > 0) {
+        run();
+        window.removeEventListener("scroll", check);
+        window.removeEventListener("resize", check);
+      }
+    };
+
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (!inView) return;
-    const duration = 1500;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-      setDisplay(format(Math.round(eased * target)));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, target]);
-
   return (
-    <span ref={ref} className={className}>
-      {display}
+    <span ref={ref} className="inline-grid">
+      {/* Invisible sizer — reserves the final width so counting never reflows. */}
+      <span aria-hidden="true" className={`invisible col-start-1 row-start-1 ${className ?? ""}`}>
+        {format(target)}
+      </span>
+      <span className={`col-start-1 row-start-1 ${className ?? ""}`}>{display}</span>
     </span>
   );
 }

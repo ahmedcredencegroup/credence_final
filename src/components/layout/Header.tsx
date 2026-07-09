@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Wordmark } from "@/components/brand/Wordmark";
@@ -133,7 +134,7 @@ export function Header() {
             aria-label="Credence Group — home"
           >
             <Emblem className="h-9 w-9 md:hidden" />
-            <Wordmark className="hidden h-7 w-auto md:block" />
+            <Wordmark className="h-6 w-auto md:h-7" />
           </a>
 
           <nav className="hidden items-center gap-10 md:flex">
@@ -184,28 +185,34 @@ export function Header() {
           positioned against the viewport. Full inset-0 so it can never leave a
           seam regardless of header state. */}
       <div
-        className={`fixed inset-0 z-40 bg-emerald-deep transition-all duration-500 md:hidden ${
-          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+        className={`fixed inset-0 z-40 bg-emerald-deep transition-opacity duration-500 md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
         <div className="flex h-full flex-col items-center justify-center gap-8 px-8">
-          {NAV.map((item) => (
-            <a
+          {NAV.map((item, i) => (
+            <motion.a
               key={item.id}
               href={`#${item.id}`}
               onClick={closeForNavigation}
+              initial={false}
+              animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: -24 }}
+              transition={{ duration: 0.4, delay: open ? 0.12 + i * 0.07 : 0, ease: [0.22, 1, 0.36, 1] }}
               className="font-display text-4xl text-ivory hover:text-gold"
             >
               {item.label}
-            </a>
+            </motion.a>
           ))}
-          <a
+          <motion.a
             href="#contact"
             onClick={closeForNavigation}
+            initial={false}
+            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: -24 }}
+            transition={{ duration: 0.4, delay: open ? 0.12 + NAV.length * 0.07 : 0, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 border border-gold px-8 py-3 text-[0.72rem] uppercase tracking-[0.28em] text-gold"
           >
             Contact
-          </a>
+          </motion.a>
         </div>
       </div>
     </>
