@@ -103,7 +103,7 @@ export function AboutSection() {
   return (
     <section id="about" className="relative bg-emerald-mid">
       {/* Full-bleed studio image */}
-      <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
+      <div className="relative h-[60svh] min-h-[420px] w-full overflow-hidden">
         <img
           src={aboutImg}
           alt="Credence Group interior design studio with material samples on a drafting table"
@@ -118,6 +118,12 @@ export function AboutSection() {
             it. Fading from that same solid color at the very top lets the photo
             emerge rather than starting with a hard edge. */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-emerald-deep to-transparent md:h-40" />
+        {/* Bottom seam cover — the main overlay's to-emerald-mid only hits full
+            opacity at the very last row, so fractional vh heights + mobile DPR
+            rounding let the photo bleed through as a 1px line against the solid
+            section below. This strip is fully opaque at the boundary and hangs
+            1px past it. */}
+        <div className="absolute inset-x-0 -bottom-px h-28 bg-gradient-to-t from-emerald-mid to-transparent" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-[1480px] px-6 pb-20 lg:px-12 lg:pb-20">
             <motion.p

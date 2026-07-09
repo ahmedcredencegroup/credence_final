@@ -90,6 +90,12 @@
 
   html {
     scroll-behavior: smooth;
+    /* Native UI (scrollbars, select dropdowns, autofill) should render dark —
+       without this, form controls pop bright-white chrome against the emerald. */
+    color-scheme: dark;
+    /* Slim scrollbar in brand colors instead of the default chrome. */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(179, 145, 79, 0.45) var(--emerald-deep);
   }
 
   body {
@@ -104,6 +110,19 @@
 
   section[id] {
     scroll-margin-top: 88px;
+  }
+
+  /* Editorial line-breaking: headlines balance across lines instead of leaving
+     a stranded last word; body text avoids single-word orphan lines. */
+  h1,
+  h2,
+  h3,
+  blockquote {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
