@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero-interior.jpg";
 import heroImgMobile from "@/assets/hero-interior-mobile.jpg";
 import { Emblem } from "@/components/brand/Emblem";
 import { GoldDust } from "@/components/GoldDust";
+import { ScrollCue } from "@/components/ScrollCue";
 
 const headline: { word: string; gold?: boolean }[] = [
   { word: "Designing" },
@@ -97,17 +98,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.a
-        href="#intro"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.32em] text-ivory/55 hover:text-gold"
-      >
-        Scroll
-        <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
-      </motion.a>
+      <ScrollCue href="#intro" />
     </section>
   );
 }

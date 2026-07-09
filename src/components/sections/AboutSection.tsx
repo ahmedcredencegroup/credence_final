@@ -113,6 +113,11 @@ export function AboutSection() {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/30 via-emerald-deep/20 to-emerald-mid" />
+        {/* Seam dissolve — the previous section (Services) ends on a flat
+            emerald-deep field, and this image used to cut in hard right against
+            it. Fading from that same solid color at the very top lets the photo
+            emerge rather than starting with a hard edge. */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-emerald-deep to-transparent md:h-40" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-[1480px] px-6 pb-12 lg:px-12 lg:pb-20">
             <motion.p
@@ -184,7 +189,7 @@ export function AboutSection() {
           <p className="eyebrow mb-5">Leadership</p>
           <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three managing directors. One standard.</h3>
 
-          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {principals.map((p, i) => (
               <motion.div
                 key={p.name}
@@ -192,12 +197,12 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="border-t border-gold/20 pt-6"
+                className="border border-gold/15 bg-emerald-deep/25 p-8 transition-colors hover:border-gold/40"
               >
-                <span className="block h-2 w-2 rotate-45 bg-gold/80" />
-                <h4 className="mt-6 font-display text-2xl text-ivory">{p.name}</h4>
+                <span className="font-display text-3xl gold-gradient-text">{String(i + 1).padStart(2, "0")}</span>
+                <h4 className="mt-5 font-display text-2xl text-ivory">{p.name}</h4>
                 <p className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-gold/80">{p.role}</p>
-                <div className="mt-5 space-y-1.5 text-sm leading-7 text-ivory/65">
+                <div className="mt-5 space-y-1.5 border-t border-gold/15 pt-5 text-sm leading-7 text-ivory/65">
                   <a href={`mailto:${p.email}`} className="block break-all transition-colors hover:text-gold">{p.email}</a>
                   <a href={`tel:${p.phone.replace(/\s+/g, "")}`} className="block transition-colors hover:text-gold">{p.phone}</a>
                 </div>
@@ -216,9 +221,11 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="flex items-start gap-3"
+                className="flex items-start gap-4"
               >
-                <span className="mt-2 h-2 w-2 shrink-0 rotate-45 bg-gold/80" />
+                <span className="shrink-0 font-display text-lg leading-none text-gold/50">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div>
                   <h4 className="font-display text-xl text-gold">{v.title}</h4>
                   <p className="mt-1 text-sm text-ivory/60">{v.body}</p>
