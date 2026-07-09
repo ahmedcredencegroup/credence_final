@@ -22,11 +22,11 @@ export function ServicesSection() {
           <div className="max-w-2xl">
             <p className="eyebrow mb-5">Services</p>
             <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
-              Three verticals, <span className="italic gold-gradient-text">one standard</span>.
+              Three verticals, <span className="italic text-gold">one standard</span>.
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-7 text-ivory/65">
-            Everything, under one roof. A single accountable team carries each project from first sketch to final handover.
+            Everything under one roof. A single accountable team carries each project from first sketch to final handover.
           </p>
         </div>
 

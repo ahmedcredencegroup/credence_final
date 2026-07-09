@@ -11,7 +11,7 @@ export function IntroSection() {
           transition={{ duration: 0.8 }}
           className="eyebrow"
         >
-          Our Story<br />Est. Hyderabad
+          Our Story<br />Hyderabad, India
         </motion.p>
 
         <motion.div
@@ -22,11 +22,11 @@ export function IntroSection() {
         >
           <p className="font-display text-[clamp(1.75rem,3vw,2.75rem)] leading-[1.2] text-ivory">
             Our vision is to redefine the standards of design and construction, creating spaces that
-            <span className="italic gold-gradient-text"> seamlessly blend functionality, innovation and timeless elegance.</span>
+            <span className="italic text-gold"> seamlessly blend functionality, innovation and timeless elegance.</span>
           </p>
           <div className="mt-12 hairline w-32" />
           <p className="mt-8 max-w-xl text-sm leading-7 text-ivory/65">
-            With extensive expertise in interior design, construction and turnkey execution, Credence Group delivers innovative, high-quality spaces through a commitment to craftsmanship, precision and client satisfaction, building lasting relationships that turn every client's vision into a space they are proud to call their own.
+            With extensive expertise across interior design, construction and turnkey execution, Credence Group delivers innovative, high-quality spaces through a commitment to craftsmanship, precision and client satisfaction. We build lasting relationships — and spaces our clients are proud to call their own.
           </p>
         </motion.div>
       </div>

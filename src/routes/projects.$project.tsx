@@ -109,7 +109,7 @@ function ProjectPage() {
         <section className="mx-auto max-w-[1280px] px-6 pb-28 lg:px-12">
           <div className="flex flex-col items-start justify-between gap-6 border-t border-gold/15 pt-12 md:flex-row md:items-center">
             <p className="max-w-md font-display text-2xl text-ivory md:text-3xl">
-              Have a space in mind? Let's compose it together.
+              Have a space in mind? Let's build it together.
             </p>
             <a
               href="/#contact"

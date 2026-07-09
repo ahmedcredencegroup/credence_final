@@ -62,7 +62,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.25em] inline-block ${item.gold ? "italic gold-gradient-text" : ""}`}
+              className={`mr-[0.25em] inline-block ${item.gold ? "italic text-gold" : ""}`}
             >
               {item.word}
             </motion.span>
@@ -75,7 +75,7 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 1.2 }}
           className="mt-8 max-w-xl text-base leading-relaxed text-ivory/75 md:text-lg"
         >
-          Hyderabad-based interior design and execution firm specializing in luxury residential, commercial, and hospitality spaces crafted with precision, purpose, and timeless elegance.
+          A Hyderabad-based interior design and execution firm specializing in luxury residential, commercial and hospitality spaces — designed, built and delivered by one in-house team.
         </motion.p>
 
         <motion.div

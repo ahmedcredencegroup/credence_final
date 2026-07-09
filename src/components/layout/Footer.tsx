@@ -1,5 +1,5 @@
 import { Wordmark } from "@/components/brand/Wordmark";
-import { Instagram, Linkedin, Mail, Globe } from "lucide-react";
+import { Mail, Globe } from "lucide-react";
 
 export function Footer() {
   return (
@@ -35,8 +35,6 @@ export function Footer() {
             <p className="eyebrow mb-4">Elsewhere</p>
             <div className="flex gap-3">
               <SocialLink href="https://credencegroup.co" label="Website"><Globe className="h-4 w-4" /></SocialLink>
-              <SocialLink href="#" label="Instagram"><Instagram className="h-4 w-4" /></SocialLink>
-              <SocialLink href="#" label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialLink>
               <SocialLink href="mailto:ahmed@credencegroup.co" label="Email"><Mail className="h-4 w-4" /></SocialLink>
             </div>
             <p className="mt-6 text-sm text-ivory/55">ahmed@credencegroup.co<br />aarish.baig@credencegroup.co<br />komal_russell@credencegroup.co</p>

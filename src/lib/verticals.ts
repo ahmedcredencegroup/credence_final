@@ -35,7 +35,7 @@ export const verticals: Vertical[] = [
   {
     slug: "concept-design-sales",
     n: "02",
-    title: "Concept design and sales",
+    title: "Concept, Design & Sales",
     body: "Right from land acquisition to master planning with design, development, construction, and sales, we deliver integrated real estate solutions that transform vision into successful developments and maximize long-term value.",
     deliverables: ["Acquisition", "Masterplanning", "Development", "Design", "Construction", "Positioning", "Sales"],
     stageNotes: [
@@ -50,7 +50,7 @@ export const verticals: Vertical[] = [
     image: img2,
     video: "/concept-design.mp4",
     intro:
-      "Client-centric and focused on delivering to the statement of uncompromising quality. We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last. Our in-house team of specialists collaborates seamlessly to deliver efficiency and precision from concept to completion. A dedicated project lead oversees every stage of the project, ensuring clear communication, smooth coordination, and timely delivery of key milestones.",
+      "From land acquisition through master planning, design, construction, positioning and sales — one accountable team carries the entire development journey. We deliver integrated real estate solutions that turn vision into successful developments and lasting long-term value.",
     hasProjects: false,
   },
   {

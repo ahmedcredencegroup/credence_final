@@ -89,11 +89,11 @@ const stats = [
 const principals = [
   { name: "Ahmed Bashoeb", role: "Managing Director", email: "ahmed@credencegroup.co", phone: "+91 90000 63200" },
   { name: "Aarish Baig", role: "Managing Director", email: "aarish.baig@credencegroup.co", phone: "+91 79899 05052" },
-  { name: "Syed Abdul Kareem", role: "Managing Director", email: "kareem@credencegroup.co", phone: "+91 00000 00000" },
+  { name: "Syed Abdul Kareem", role: "Managing Director", email: "kareem@credencegroup.co", phone: "" },
 ];
 
 const values = [
-  { title: "Client-Centric", body: "Spaces that reflect your vision and lifestyle focused on delivering to the statement." },
+  { title: "Client-Centric", body: "Spaces that reflect your vision and lifestyle, shaped around the way you live." },
   { title: "Uncompromising Quality", body: "We uphold the highest standards in material selection, craftsmanship, and attention to detail, ensuring every space is built to last." },
   { title: "Flawless Execution", body: "Our in-house team of specialists collaborates seamlessly to deliver efficiency and precision from concept to completion." },
   { title: "Single Point of Contact", body: "A dedicated project lead oversees every stage of the project, ensuring clear communication, smooth coordination, and timely delivery of key milestones." },
@@ -136,7 +136,7 @@ export function AboutSection() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-ivory"
             >
-              The team behind <span className="italic gold-gradient-text">Credence</span>.
+              The team behind <span className="italic text-gold">Credence</span>.
             </motion.h2>
           </div>
         </div>
@@ -174,7 +174,7 @@ export function AboutSection() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-sans text-3xl font-semibold tracking-tight text-gold md:text-4xl">
+                  <dt className="font-sans text-3xl font-semibold tabular-nums tracking-tight text-gold md:text-4xl">
                     <CountUp value={s.n} />
                   </dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
@@ -187,7 +187,7 @@ export function AboutSection() {
         {/* Principals */}
         <div className="mt-28">
           <p className="eyebrow mb-5">Leadership</p>
-          <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three managing directors. One standard.</h3>
+          <h3 className="font-display text-[clamp(1.75rem,3vw,2.5rem)] text-ivory">Three managing directors. Every project, personally led.</h3>
 
           <div className="mt-9 grid gap-4 md:grid-cols-3">
             {principals.map((p, i) => (
@@ -204,7 +204,9 @@ export function AboutSection() {
                 <p className="mt-0.5 text-[0.65rem] uppercase tracking-[0.18em] text-gold/80">{p.role}</p>
                 <div className="mt-3 space-y-1 border-t border-gold/15 pt-3 text-[0.82rem] leading-6 text-ivory/65">
                   <a href={`mailto:${p.email}`} className="block break-all transition-colors hover:text-gold">{p.email}</a>
-                  <a href={`tel:${p.phone.replace(/\s+/g, "")}`} className="block transition-colors hover:text-gold">{p.phone}</a>
+                  {p.phone && (
+                    <a href={`tel:${p.phone.replace(/\s+/g, "")}`} className="block transition-colors hover:text-gold">{p.phone}</a>
+                  )}
                 </div>
               </motion.div>
             ))}

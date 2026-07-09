@@ -50,7 +50,7 @@ export function ContactSection() {
           "[contact] VITE_CONTACT_ENDPOINT is not set — the inquiry was not delivered anywhere.",
         );
       }
-      toast.success("Thank you, we'll be in touch within 48 hours.");
+      toast.success("Thank you, we'll be in touch within 24 hours.");
       setForm({ name: "", email: "", phone: "", type: "", budget: "", message: "" });
     } catch {
       toast.error("Sorry — we couldn't send that. Please email us at ahmed@credencegroup.co.");
@@ -74,7 +74,7 @@ export function ContactSection() {
         >
           <p className="eyebrow mb-5">Begin a Project</p>
           <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
-            Tell Us About Your Project
+            Tell us about your <span className="italic text-gold">project</span>.
           </h2>
           <p className="mt-6 max-w-md text-sm leading-7 text-ivory/65">
             We undertake a select number of projects each year to ensure exceptional attention to detail. Share your requirements and our team will respond within 24 hours.
@@ -123,7 +123,7 @@ export function ContactSection() {
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             )}
           </button>
-          <p className="mt-4 text-xs text-ivory/60">By submitting, you agree to be contacted by the studio. We do not share enquiries.</p>
+          <p className="mt-4 text-xs text-ivory/60">By submitting, you agree to be contacted by the studio. We do not share inquiries.</p>
         </motion.form>
       </div>
     </section>

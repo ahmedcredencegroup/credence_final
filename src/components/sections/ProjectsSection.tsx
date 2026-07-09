@@ -18,11 +18,11 @@ export function ProjectsSection() {
           <div>
             <p className="eyebrow mb-5">Our Signature Projects</p>
             <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
-              Projects of <span className="italic gold-gradient-text">consequence</span>.
+              Projects of <span className="italic text-gold">consequence</span>.
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-7 text-ivory/65">
-            A selection of our signature residences across Hyderabad Ensuring exceptional craftsmanship, thoughtful design and uncompromising quality.
+            A selection of our signature residences across Hyderabad — each delivered with exceptional craftsmanship, thoughtful design and uncompromising quality.
           </p>
         </div>
 
