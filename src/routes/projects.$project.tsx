@@ -19,7 +19,9 @@ export const Route = createFileRoute("/projects/$project")({
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
+        { property: "og:url", content: `https://credencegroup.co/projects/${params.project}` },
       ],
+      links: [{ rel: "canonical", href: `https://credencegroup.co/projects/${params.project}` }],
     };
   },
   loader: ({ params }) => {
@@ -62,7 +64,7 @@ function ProjectPage() {
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         {/* Header */}
         <section className="mx-auto max-w-[1280px] px-6 pb-12 pt-36 lg:px-12 lg:pt-44">
           <Link

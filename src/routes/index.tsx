@@ -8,7 +8,6 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import heroImg from "@/assets/hero-interior.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,10 +25,12 @@ export const Route = createFileRoute("/")({
           "Luxury interior design, premium turnkey projects and infrastructure development across Hyderabad. Concept to handover, under one roof.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroImg },
+      { property: "og:url", content: "https://credencegroup.co/" },
+      { property: "og:image", content: "https://credencegroup.co/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: heroImg },
+      { name: "twitter:image", content: "https://credencegroup.co/og-image.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://credencegroup.co/" }],
   }),
   component: Home,
 });
@@ -38,7 +39,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-emerald-deep">
       <Header />
-      <main>
+      <main id="main-content">
         <HeroSection />
         <IntroSection />
         <ProjectsSection />

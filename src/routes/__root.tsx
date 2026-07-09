@@ -102,11 +102,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Credence Group · Interior Design & Turnkey | Hyderabad" },
       { property: "og:description", content: "Hyderabad-based interior design, turnkey delivery and infrastructure development. Building trust, creating value. Concept to handover, under one roof." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://credencegroup.co/" },
+      { property: "og:site_name", content: "Credence Group" },
+      { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Credence Group · Interior Design & Turnkey | Hyderabad" },
       { name: "twitter:description", content: "Hyderabad-based interior design, turnkey delivery and infrastructure development. Building trust, creating value. Concept to handover, under one roof." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6bcf2f5c-52df-4a6a-b75b-db76b2a9decf/id-preview-7a0d98e4--572d3a5f-46a7-4372-a96d-af64dedf9ebc.lovable.app-1782042152057.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6bcf2f5c-52df-4a6a-b75b-db76b2a9decf/id-preview-7a0d98e4--572d3a5f-46a7-4372-a96d-af64dedf9ebc.lovable.app-1782042152057.png" },
+      { property: "og:image", content: "https://credencegroup.co/og-image.jpg" },
+      { property: "og:image:width", content: "1920" },
+      { property: "og:image:height", content: "1080" },
+      { property: "og:image:alt", content: "Credence Group — cinematic emerald-toned luxury interior" },
+      { name: "twitter:image", content: "https://credencegroup.co/og-image.jpg" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://credencegroup.co/#organization",
+          name: "Credence Group",
+          image: "https://credencegroup.co/og-image.jpg",
+          url: "https://credencegroup.co/",
+          telephone: "+91-90000-63200",
+          email: "ahmed@credencegroup.co",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Meenakshi Tech Park, Tower B, 8th Floor",
+            addressLocality: "Hyderabad",
+            addressRegion: "Telangana",
+            postalCode: "500032",
+            addressCountry: "IN",
+          },
+          areaServed: "Hyderabad",
+          description:
+            "Hyderabad-based interior design, turnkey delivery and infrastructure development practice. Concept to handover, under one roof.",
+          priceRange: "₹₹₹",
+        },
+      },
     ],
     links: [
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
@@ -150,6 +180,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Skip link — off-screen until focused, so keyboard/screen-reader users
+          can jump past the nav straight to page content (WCAG 2.4.1). */}
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 border border-gold bg-emerald-deep px-5 py-3 text-[0.74rem] uppercase tracking-[0.24em] text-gold opacity-0 transition-all focus:translate-y-0 focus:opacity-100"
+      >
+        Skip to content
+      </a>
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={pathname}

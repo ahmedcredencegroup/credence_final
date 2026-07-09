@@ -22,7 +22,9 @@ export const Route = createFileRoute("/services/$vertical")({
         { name: "description", content: v?.intro ?? "" },
         { property: "og:title", content: title },
         { property: "og:description", content: v?.intro ?? "" },
+        { property: "og:url", content: `https://credencegroup.co/services/${params.vertical}` },
       ],
+      links: [{ rel: "canonical", href: `https://credencegroup.co/services/${params.vertical}` }],
     };
   },
   loader: ({ params }) => {
@@ -65,7 +67,7 @@ function VerticalPage() {
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         {/* Intro */}
         <section className="mx-auto max-w-[1280px] px-6 pb-16 pt-36 lg:px-12 lg:pt-44">
           <Link

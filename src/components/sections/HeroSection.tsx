@@ -31,6 +31,8 @@ export function HeroSection() {
             alt="Cinematic emerald-toned luxury living room at dusk"
             width={1920}
             height={1080}
+            fetchPriority="high"
+            loading="eager"
             className="h-full w-full object-cover"
           />
         </picture>
