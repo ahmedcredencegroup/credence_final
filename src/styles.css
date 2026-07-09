@@ -156,26 +156,16 @@
   }
 }
 
-/* Golden paper plane — a slim origami dart eases along a curved path while a
-   faint gold trail draws in behind it, then the whole thing fades out and
-   respawns from a new random point. Three synced animations, all the same
-   duration per flight: the plane rides an offset-path, the trail is revealed
-   via stroke-dashoffset, and a wrapper fades the pair in and out. */
+/* Golden paper plane — a slim origami dart eases along a curved path,
+   trailed by a handful of shrinking, fading dots on the same path (see
+   PaperPlane.tsx), then the whole thing fades out and respawns from a new
+   random point. */
 @keyframes plane-fly {
   from {
     offset-distance: 0%;
   }
   to {
     offset-distance: 100%;
-  }
-}
-
-@keyframes plane-draw {
-  from {
-    stroke-dashoffset: var(--trail-start, 100);
-  }
-  to {
-    stroke-dashoffset: var(--trail-end, 0);
   }
 }
 

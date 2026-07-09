@@ -119,7 +119,7 @@ export function AboutSection() {
             emerge rather than starting with a hard edge. */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-emerald-deep to-transparent md:h-40" />
         <div className="absolute inset-0 flex items-end">
-          <div className="mx-auto w-full max-w-[1480px] px-6 pb-12 lg:px-12 lg:pb-20">
+          <div className="mx-auto w-full max-w-[1480px] px-6 pb-20 lg:px-12 lg:pb-20">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -198,6 +198,7 @@ export function AboutSection() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 className="border border-gold/15 bg-emerald-deep/25 p-5 transition-colors hover:border-gold/40"
+                style={{ boxShadow: "var(--shadow-elegant)" }}
               >
                 <span className="font-sans text-[0.65rem] font-semibold tracking-[0.3em] text-gold">
                   {String(i + 1).padStart(2, "0")}

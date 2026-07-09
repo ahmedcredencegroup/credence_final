@@ -2,12 +2,8 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type Flight = {
   id: number;
-  d: string; // SVG path data, shared by the trail and the plane's offset-path
+  d: string; // SVG path data, used as the plane's and trail dots' offset-path
   dur: number; // seconds
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number; // trail gradient endpoints (fade at the tail, brighter at the nose)
 };
 
 // Build one flight in real pixel space: enter off one side, exit off the other,
@@ -36,12 +32,14 @@ function buildFlight(w: number, h: number, id: number, durMin: number, durMax: n
     id,
     d: `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`,
     dur: r(durMin, durMax),
-    x1: sx,
-    y1: sy,
-    x2: ex,
-    y2: ey,
   };
 }
+
+// Number of small dots making up the trail. Each one rides the same
+// offset-path as the plane but starts a little later and finishes at the
+// same moment the plane does — so they bunch up close behind the nose and
+// fade out toward the tail, instead of reading as one solid drawn line.
+const TRAIL_DOTS = 6;
 
 /**
  * An occasional golden paper plane that drifts across its container leaving a
@@ -65,11 +63,10 @@ export function PaperPlane({
   active?: boolean;
   opacity?: number;
   size?: number;
-  /** Tailwind text-color class for the trail (its gradient uses currentColor). */
+  /** Tailwind text-color class for the trail dots (uses currentColor). */
   trailClassName?: string;
-  /** Trail length as a percentage of the flight path (0–100). A short comet
-   *  segment that follows the plane and clears behind it, rather than a solid
-   *  line spanning the whole path. */
+  /** How far the trail's dots lag behind the plane, as a percentage of the
+   *  flight duration (0–100). Larger values spread the dots out further. */
   trailLength?: number;
   /** Flight duration range in seconds. */
   durationRange?: [number, number];
@@ -148,43 +145,38 @@ export function PaperPlane({
             } as CSSProperties
           }
         >
-          {/* Trail — drawn in behind the plane via stroke-dashoffset. */}
-          <svg
-            className={`absolute inset-0 h-full w-full ${trailClassName}`}
-            viewBox={`0 0 ${dims.w} ${dims.h}`}
-            preserveAspectRatio="none"
-            fill="none"
-          >
-            <defs>
-              <linearGradient
-                id={`plane-trail-${flight.id}`}
-                gradientUnits="userSpaceOnUse"
-                x1={flight.x1}
-                y1={flight.y1}
-                x2={flight.x2}
-                y2={flight.y2}
-              >
-                <stop offset="0" stopColor="currentColor" stopOpacity="0" />
-                <stop offset="1" stopColor="currentColor" stopOpacity="0.9" />
-              </linearGradient>
-            </defs>
-            <path
-              d={flight.d}
-              stroke={`url(#plane-trail-${flight.id})`}
-              strokeWidth="1.1"
-              strokeLinecap="round"
-              pathLength={100}
-              strokeDasharray={`${trailLength} 200`}
-              vectorEffect="non-scaling-stroke"
-              style={
-                {
-                  "--trail-start": trailLength,
-                  "--trail-end": trailLength - 100,
-                  animation: `plane-draw ${flight.dur}s linear forwards`,
-                } as CSSProperties
-              }
-            />
-          </svg>
+          {/* Trail — small dots riding the same path as the plane, each
+              starting a beat later and shrinking to zero opacity by the last
+              one, so it visibly fades out behind the nose instead of reading
+              as a single flat line. Every dot's own animation is shortened by
+              its lag so it still arrives exactly when the plane does. */}
+          {Array.from({ length: TRAIL_DOTS }, (_, i) => {
+            const frac = (i + 1) / (TRAIL_DOTS + 1); // how far back this dot sits, 0–1
+            const lag = flight.dur * (trailLength / 100) * frac;
+            const fade = Math.pow(1 - frac, 1.6);
+            const dotSize = Math.max(1, size * 0.14 * fade + 1);
+            return (
+              <div
+                key={i}
+                className={trailClassName}
+                style={
+                  {
+                    position: "absolute",
+                    left: -dotSize / 2,
+                    top: -dotSize / 2,
+                    width: dotSize,
+                    height: dotSize,
+                    borderRadius: "9999px",
+                    backgroundColor: "currentColor",
+                    opacity: fade * 0.85,
+                    offsetPath: `path('${flight.d}')`,
+                    offsetRotate: "0deg",
+                    animation: `plane-fly ${Math.max(0.05, flight.dur - lag)}s linear ${lag}s forwards`,
+                  } as CSSProperties
+                }
+              />
+            );
+          })}
 
           {/* Plane — rides the same path; offset-rotate keeps its nose forward. */}
           <div
