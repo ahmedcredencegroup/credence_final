@@ -174,8 +174,8 @@ export function AboutSection() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-sans text-3xl font-semibold tracking-tight md:text-4xl">
-                    <CountUp value={s.n} className="gold-gradient-text" />
+                  <dt className="font-sans text-3xl font-semibold tracking-tight text-gold md:text-4xl">
+                    <CountUp value={s.n} />
                   </dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
                 </div>
@@ -223,9 +223,7 @@ export function AboutSection() {
                 transition={{ duration: 0.7, delay: i * 0.08 }}
                 className="flex items-start gap-4"
               >
-                <span className="shrink-0 font-display text-lg leading-none text-gold/50">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <span aria-hidden="true" className="mt-1.5 h-9 w-px shrink-0 bg-gradient-to-b from-gold to-transparent" />
                 <div>
                   <h4 className="font-display text-xl text-gold">{v.title}</h4>
                   <p className="mt-1 text-sm text-ivory/60">{v.body}</p>
