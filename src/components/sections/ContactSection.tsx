@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight, ChevronDown, Loader2, Mail, MapPin, Phone, Globe } from "lucide-react";
 import { toast } from "sonner";
+import { PaperPlane } from "@/components/PaperPlane";
 
 const projectTypes = ["Interior Design", "Turnkey Project", "Infrastructure", "Furniture / Modular", "Other"];
 const budgets = ["Under ₹25L", "₹25L – ₹1Cr", "₹1Cr – ₹5Cr", "₹5Cr+", "Prefer not to say"];
@@ -60,6 +61,9 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative bg-emerald-mid py-20 md:py-36">
+      {/* Ambient golden paper plane, floating above the section — the "send"
+          motif quietly reinforces the inquiry form. */}
+      <PaperPlane opacity={0.45} size={34} trailLength={16} className="z-20" />
       <div className="mx-auto grid max-w-[1280px] gap-14 px-6 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-12">
         {/* Left — copy + details */}
         <motion.div

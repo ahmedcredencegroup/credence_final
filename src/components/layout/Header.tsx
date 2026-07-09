@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Emblem } from "@/components/brand/Emblem";
+import { PaperPlane } from "@/components/PaperPlane";
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -189,7 +190,17 @@ export function Header() {
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex h-full flex-col items-center justify-center gap-8 px-8">
+        {/* Ambient golden paper plane, drifting behind the nav while the drawer
+            is open. Gated on `open` so it only flies when the menu is visible. */}
+        <PaperPlane
+          active={open}
+          opacity={0.4}
+          size={34}
+          trailLength={20}
+          durationRange={[3, 4.5]}
+          gapRange={[1500, 3500]}
+        />
+        <div className="relative flex h-full flex-col items-center justify-center gap-8 px-8">
           {NAV.map((item, i) => (
             <motion.a
               key={item.id}
