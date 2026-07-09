@@ -97,7 +97,7 @@ function VerticalPage() {
                 <p className="eyebrow mb-3 text-center">What we deliver</p>
                 <h2 className="mx-auto mb-14 max-w-2xl text-center font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] text-ivory">
                   From raw land to a place people call{" "}
-                  <span className="italic text-gold">home</span>.
+                  <span className="italic gold-gradient-text">home</span>.
                 </h2>
                 <ProcessTimeline
                   steps={v.deliverables.map((d, i) => ({ title: d, note: v.stageNotes?.[i] }))}
@@ -181,7 +181,7 @@ function VerticalPage() {
               <p className="eyebrow mb-5">Coming Soon</p>
               <h2 className="mx-auto max-w-2xl font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.15] text-ivory">
                 Detailed case studies and imagery for{" "}
-                <span className="italic text-gold">{v.title.toLowerCase()}</span> are being prepared.
+                <span className="italic gold-gradient-text">{v.title.toLowerCase()}</span> are being prepared.
               </h2>
               <p className="mx-auto mt-6 max-w-md text-sm leading-7 text-ivory/65">
                 We're putting this portfolio together. In the meantime, reach out and we'll walk you through our work in this vertical, personally.

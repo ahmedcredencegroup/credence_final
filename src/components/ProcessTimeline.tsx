@@ -90,7 +90,7 @@ function Timeline({ steps, isDesktop }: { steps: ProcessStep[]; isDesktop: boole
                   : "border-gold/35 bg-emerald-deep"
               }`}
             >
-              <span className={isLit ? "" : "text-gold"}>
+              <span className={isLit ? "" : "gold-gradient-text"}>
                 {String(i + 1).padStart(2, "0")}
               </span>
             </span>

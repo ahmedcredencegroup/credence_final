@@ -22,7 +22,7 @@ export function IntroSection() {
         >
           <p className="font-display text-[clamp(1.75rem,3vw,2.75rem)] leading-[1.2] text-ivory">
             Our vision is to redefine the standards of design and construction, creating spaces that
-            <span className="italic text-gold"> seamlessly blend functionality, innovation and timeless elegance.</span>
+            <span className="italic gold-gradient-text"> seamlessly blend functionality, innovation and timeless elegance.</span>
           </p>
           <div className="mt-12 hairline w-32" />
           <p className="mt-8 max-w-xl text-sm leading-7 text-ivory/65">

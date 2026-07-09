@@ -74,7 +74,7 @@ export function ContactSection() {
         >
           <p className="eyebrow mb-5">Begin a Project</p>
           <h2 className="font-display text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.02] text-ivory">
-            Tell us about your <span className="italic text-gold">project</span>.
+            Tell us about your <span className="italic gold-gradient-text">project</span>.
           </h2>
           <p className="mt-6 max-w-md text-sm leading-7 text-ivory/65">
             We undertake a select number of projects each year to ensure exceptional attention to detail. Share your requirements and our team will respond within 24 hours.

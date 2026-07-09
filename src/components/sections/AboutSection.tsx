@@ -136,7 +136,7 @@ export function AboutSection() {
               transition={{ duration: 0.9, delay: 0.1 }}
               className="font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.02] text-ivory"
             >
-              The team behind <span className="italic text-gold">Credence</span>.
+              The team behind <span className="italic gold-gradient-text">Credence</span>.
             </motion.h2>
           </div>
         </div>

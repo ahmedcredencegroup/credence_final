@@ -62,7 +62,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.25em] inline-block ${item.gold ? "italic text-gold" : ""}`}
+              className={`mr-[0.25em] inline-block ${item.gold ? "italic gold-gradient-text" : ""}`}
             >
               {item.word}
             </motion.span>
