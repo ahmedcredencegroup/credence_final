@@ -174,8 +174,8 @@ export function AboutSection() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="font-sans text-3xl font-semibold tabular-nums tracking-tight text-gold md:text-4xl">
-                    <CountUp value={s.n} />
+                  <dt className="font-display text-4xl tabular-nums leading-none md:text-5xl">
+                    <CountUp value={s.n} className="gold-gradient-text" />
                   </dt>
                   <dd className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-ivory/55">{s.label}</dd>
                 </div>
