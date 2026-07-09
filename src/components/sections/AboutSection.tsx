@@ -200,10 +200,7 @@ export function AboutSection() {
                 className="border border-gold/15 bg-emerald-deep/25 p-5 transition-colors hover:border-gold/40"
                 style={{ boxShadow: "var(--shadow-elegant)" }}
               >
-                <span className="font-sans text-[0.65rem] font-semibold tracking-[0.3em] text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h4 className="mt-3 font-display text-lg text-ivory">{p.name}</h4>
+                <h4 className="font-display text-lg text-ivory">{p.name}</h4>
                 <p className="mt-0.5 text-[0.65rem] uppercase tracking-[0.18em] text-gold/80">{p.role}</p>
                 <div className="mt-3 space-y-1 border-t border-gold/15 pt-3 text-[0.82rem] leading-6 text-ivory/65">
                   <a href={`mailto:${p.email}`} className="block break-all transition-colors hover:text-gold">{p.email}</a>
